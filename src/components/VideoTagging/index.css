@@ -1,0 +1,41 @@
+#videoTaggingPage {
+    width: 100%;
+    height: 100vh;
+    padding: 0 2em;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    background: #c4cfedb9;
+    
+}
+
+#videoTaggingPage #uploadForm {
+    
+    padding: 2em; 
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+#videoTaggingPage h3 {
+    margin: 1em;
+}
+
+#videoTaggingPage span {
+    font-weight: bold;
+}
+
+#videoTaggingPage #videoContainer {
+    /* width: 25em; */
+    background: transparent;
+    padding: 2em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    color: #1d3062;
+}
+
+#videoTaggingPage #videoContainer li {
+    list-style: none;
+}
+
+#videoTaggingPage #videoContainer #videoInfoBlock {
+    margin: 2em;
+}

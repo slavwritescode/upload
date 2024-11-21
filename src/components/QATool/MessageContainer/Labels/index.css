@@ -1,0 +1,154 @@
+#qaTool #labels {
+    display: flex;
+    flex-direction: row;
+    gap: .5em;
+}
+
+#qaTool #labels .subcontainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#qaTool #labels .message-parameter {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    border-radius: .3em;
+}
+
+#qaTool #labels .message-parameter select {
+    border-radius: .3em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+    min-width: 11em;
+}
+
+#qaTool #labels .message-parameter .message-parameter-key {
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+    background: var(--telus-color-1);
+    color: var(--link-text-1);
+    border-radius: .3em .3em 0 0;
+    padding: 0 .3em;
+    white-space: nowrap;
+}
+
+#qaTool #labels .message-parameter-container {
+    display: inline-flex;
+    flex-direction: column;
+    gap: .5em;
+    padding: .5em;
+}
+
+#qaTool #labels .message-parameter-container .info {
+    display: flex;
+    justify-content: space-between;
+    gap: .5em;
+    align-items: center;
+}
+
+#qaTool #labels #openLogButton {
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    padding: .1em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    background: rgba(128, 128, 128, 0.3);
+    border-radius: .3em;
+}
+
+#qaTool #labels .unlocked-editor {
+    background: red !important;
+}
+
+#qaTool #labels .message-parameter-container .status-button {
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    padding: .1em .5em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    background: rgba(128, 128, 128, 0.3);
+    border-radius: .3em;
+}
+
+#qaTool #labels .message-parameter-container button[disabled] {
+    cursor: not-allowed ! important;
+}
+
+#qaTool #labels .message-parameter-container .status-button-accepted {
+    background: var(--telus-color-2);
+    color: white;
+}
+
+#qaTool #labels .message-parameter-container .status-button-rejected {
+    background: red;
+    color: white;
+}
+
+#qaTool #labels .message-parameter-container .status-button-backup {
+    background: rgb(0, 255, 191);
+}
+
+#qaTool #labels .message-parameter-container .status-button-delivered {
+    background: yellow;
+    color: black;
+}
+
+#qaTool #labels .message-parameter-container .status-button-accepted-by-client {
+    background: var(--telus-color-2);
+    color: white;
+}
+
+#qaTool #labels .message-parameter-container .status-button-rejected-by-client {
+    background: red;
+    color: white;
+}
+
+#qaTool #labels #backupNotification {
+    border-radius: .3em;
+    padding: .5em;
+    background: red;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2em;
+    cursor: default;
+    user-select: none;
+    outline: none;
+}
+
+#qaTool #labels button {
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    padding: .1em .5em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    background: rgba(128, 128, 128, 0.3);
+    border-radius: .3em;
+    white-space: nowrap;
+}
+
+#qaTool #labels button.selected {
+    background: var(--telus-color-2);
+    color: white;
+}
+
+#qaTool #labels button.fail-reason.selected {
+    background: red;
+    color: white;
+}

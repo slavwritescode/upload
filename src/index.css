@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  /* ===== Colors ===== */
+  --body-color: #E4E9F7;
+  --font-color: #1d3062;
+  --telus-color-1: rgba(75, 40, 109);
+  --telus-color-2: rgb(53, 160, 0);
+  --telus-color-3: rgb(85, 255, 0);
+  --link-text-1: #fff;
+  --link-hover-text-1: #ffffffda;
+
+  /* ====== Fontsize ====== */
+  --font-size: 14px;
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--font-color);
+  font-size: var(--font-size);
+  overflow: hidden;
+}
+
+body:has(#registrationForm) {
+  overflow: auto;
+}
+
+.swal2-popup {
+  font-size: 1em !important;
+}
+
+@media only screen and (max-width: 1000px) {
+
+  :root {
+    overflow: hidden;
+    max-height: 100vh;
+    max-height: 100svh;
+  }
+
+  body {
+    background-color: #E4E9F7;
+    font-size: 11px;
+  }
+
+  #root {
+    position: absolute;
+    height: 100vh;
+    height: 100svh;
+    max-height: 100vh;
+    max-height: 100svh;
+    width: 100vw;
+    width: 100svw;
+    max-width: 100vw;
+    max-width: 100svw;
+    text-align: center;
+    overflow: hidden;
+  }
+}

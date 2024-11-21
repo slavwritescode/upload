@@ -1,0 +1,152 @@
+#qaToolFilterBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+#qaToolFilterMainContainer {
+    position: absolute;
+    top: 2em;
+    left: 9em;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    padding: .5em;
+    width: 20em;
+    background-color: var(--body-color);
+    max-height: calc(100vh - 4em);
+    overflow-x: auto;
+}
+
+#qaToolFilterMainContainer .filter-item span {
+    display: inline-block;
+    padding-left: .2em;
+    background: var(--telus-color-1);
+    color: var(--link-text-1);
+    width: 100%;
+    user-select: none;
+}
+
+#qaToolFilterMainContainer .filter-item input::-webkit-outer-spin-button,
+#qaToolFilterMainContainer .filter-item input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#qaToolFilterMainContainer .filter-item input[type='number'] {
+    width: 100%;
+    margin: .2em 0;
+    padding: .1em;
+    /*-moz-appearance: textfield;*/
+    outline: none;
+}
+
+#qaToolFilterMainContainer .filter-item .checkbox-row {
+    display: flex;
+    flex-direction: row;
+    padding: .2em;
+}
+
+#qaToolFilterMainContainer .filter-item input[type='checkbox'],
+#qaToolFilterMainContainer .filter-item input[type='radio'] {
+    cursor: pointer;
+    accent-color: var(--telus-color-2);
+    outline: none;
+}
+
+#qaToolFilterMainContainer .filter-item input::placeholder {
+    font-style: italic;
+    color: rgba(128, 128, 128);
+    user-select: none;
+}
+
+#qaToolFilterMainContainer .filter-item label {
+    padding-left: .2em;
+    cursor: pointer;
+    user-select: none;
+}
+
+#qaToolFilterMainContainer .filter-item select {
+    width: 100%;
+    padding: .1em;
+    margin: .2em 0;
+    user-select: none;
+    outline: none;
+}
+
+#qaToolFilterMainContainer button {
+    background: var(--telus-color-1);
+    color: var(--link-text-1);
+    cursor: pointer;
+    padding: 0 2em;
+    margin: 0 auto;
+    outline: none;
+    user-select: none;
+}
+
+#qaToolFilterMainContainer button:hover {
+    color: var(--link-hover-text-1);
+}
+
+#qaToolQaersContainer {
+    position: absolute;
+    top: 2em;
+    left: 29.5em;
+    max-width: calc(100vw - 30em);
+    max-height: calc(100vh - 4em);
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    padding: .5em;
+    background-color: var(--body-color);
+    overflow: auto;
+}
+
+#qaToolQaersContainer table {
+    text-align: center;
+    border-collapse: collapse;
+    user-select: none;
+}
+
+#qaToolQaersContainer table th,
+#qaToolQaersContainer table td {
+    text-align: center;
+    padding: 0 .4em;
+    border: 1px solid grey;
+    white-space: nowrap;
+}
+
+#qaToolQaersContainer table th {
+    background: var(--telus-color-1);
+    color: var(--link-text-1);
+    font-weight: normal;
+}
+
+#qaToolQaersContainer table tr:nth-child(even) {
+    background-color: rgba(175, 94, 255, 0.4);
+}
+
+#qaToolQaersContainer table tr:nth-child(1) th:nth-child(1),
+#qaToolQaersContainer table tbody tr td:nth-child(1) {
+    border-right: 2px solid black !important;
+}
+
+#qaToolQaersContainer table tbody tr:nth-last-child(1) {
+    border-top: 2px solid black;
+}
+
+#qaToolQaersContainer table tr:hover {
+    background-color: var(--telus-color-2);
+    color: var(--link-text-1);
+}
+
+#qaToolQaersContainer table .strong-left-border {
+    border-left: 3px solid black !important;
+}

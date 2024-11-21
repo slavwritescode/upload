@@ -1,0 +1,17 @@
+#qaTool #mainMessageContainer {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    gap: .5em;
+    padding: .5em;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#qaTool #mainMessageContainer #additionalMessageInformation {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    font-style: italic;
+    user-select: none;
+}

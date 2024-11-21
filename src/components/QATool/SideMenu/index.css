@@ -1,0 +1,120 @@
+#qaTool #sideMenu {
+    width: 9em;
+    min-width: 9em;
+    display: flex;
+    flex-direction: column;
+    gap: .1em;
+    height: 100%;
+    box-shadow: 1px 0px 5px rgba(0, 0, 0, .5);
+}
+
+#qaTool #sideMenu #previousButton,
+#qaTool #sideMenu #nextButton,
+#qaTool #sideMenu #loopButton,
+#qaTool #sideMenu #filterButton {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    background: var(--telus-color-1);
+    color: var(--link-text-1);
+    user-select: none;
+    outline: none;
+    padding: .3em .2em .2em .2em;
+}
+
+#qaTool #sideMenu #previousButton:hover,
+#qaTool #sideMenu #nextButton:hover,
+#qaTool #sideMenu #loopButton:hover,
+#qaTool #sideMenu #filterButton:hover {
+    color: var(--link-hover-text-1);
+}
+
+#qaTool #sideMenu .filter-is-used {
+    color: var(--telus-color-3);
+}
+
+#qaTool #sideMenu #menu {
+    padding: .5em .5em 1em .5em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+#qaTool #sideMenu #menu .new-status-marker {
+    color: white;
+}
+
+#qaTool #sideMenu #menu .accepted-status-marker {
+    color: rgb(85, 255, 0);
+}
+
+#qaTool #sideMenu #menu .backup-status-marker {
+    color: rgb(0, 255, 191);
+}
+
+#qaTool #sideMenu #menu .rejected-status-marker {
+    color: red;
+}
+
+#qaTool #sideMenu #menu .delivered-status-marker {
+    color: yellow;
+}
+
+#qaTool #sideMenu #menu .accepted-by-client-status-marker {
+    color: rgb(85, 255, 0);
+}
+
+#qaTool #sideMenu #menu .rejected-by-client-status-marker {
+    color: red;
+}
+
+#qaTool #sideMenu #menu button {
+    padding: .2em 1em;
+    border: none;
+    font-weight: bold;
+    font-size: .9em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .5);
+    cursor: pointer;
+    outline: none;
+    background: var(--telus-color-1);
+    color: var(--link-text-1);
+    user-select: none;
+    border-radius: .3em;
+}
+
+#qaTool #sideMenu #menu button:hover {
+    color: var(--link-hover-text-1);
+}
+
+#qaTool #sideMenu #menu .selected-message {
+    background: var(--telus-color-2);
+}
+
+#qaTool #sideMenu #menu button span {
+    display: inline-block;
+    width: 1.2em;
+    text-align: center;
+    text-shadow: -1px -1px 0 var(--telus-color-1), 1px -1px 0 var(--telus-color-1), -1px 1px 0 var(--telus-color-1) px 1px 0 var(--telus-color-1);
+}
+
+#qaTool #sideMenu #oneMoreButton {
+    padding: .2em 1em;
+    border: none;
+    font-weight: bold;
+    font-size: .9em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .5);
+    cursor: pointer;
+    outline: none;
+    background: red;
+    color: var(--link-text-1);
+    user-select: none;
+    border-radius: .3em;
+    margin: .5em;
+}
+
+#qaTool #sideMenu #oneMoreButton:hover {
+    color: var(--link-hover-text-1);
+}

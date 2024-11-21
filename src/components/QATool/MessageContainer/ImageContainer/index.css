@@ -1,0 +1,48 @@
+#qaTool #imageContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#qaTool #imageContainer img#screenshot {
+    top: 20px;
+    user-select: none;
+    /* width: 25em; */
+    /* margin: 25px; */
+}
+
+#qaTool #imageContainer canvas {
+    top: 20px;
+    position: absolute;
+    border: 1px solid black;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+}
+
+#qaTool #imageContainer #loadingCover {
+    top: 20px;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2em;
+    font-style: italic;
+    cursor: default;
+    user-select: none;
+}
+
+#qaTool #imageContainer img#snippet {
+    position: absolute;
+    right: 0;
+    width: 500px;
+    border: 1px solid red;
+}
+
+#qaTool #imageContainer #zoomSelector {
+    border-radius: .3em .3em 0 0;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+}

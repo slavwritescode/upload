@@ -1,0 +1,885 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Aspen ICF</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            text-indent: 0;
+        }
+
+        h1 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        .p,
+        p {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+            margin: 0pt;
+        }
+
+        .a,
+        a {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        .s2 {
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        .s4 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: underline;
+            font-size: 12pt;
+        }
+
+        .s5 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l1 {
+            padding-left: 0pt;
+            counter-reset: c1 1;
+        }
+
+        #l1>li>*:first-child:before {
+            counter-increment: c1;
+            content: "(" counter(c1, decimal)") ";
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        #l1>li:first-child>*:first-child:before {
+            counter-increment: c1 0;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l2 {
+            padding-left: 0pt;
+        }
+
+        #l2>li>*:first-child:before {
+            content: "● ";
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l3 {
+            padding-left: 0pt;
+        }
+
+        #l3>li>*:first-child:before {
+            content: "● ";
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        #l4 {
+            padding-left: 0pt;
+        }
+
+        #l4>li>*:first-child:before {
+            content: "o ";
+            color: black;
+            font-family: "Courier New", monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+        }
+
+        #l5 {
+            padding-left: 0pt;
+        }
+
+        #l5>li>*:first-child:before {
+            content: "o ";
+            color: black;
+            font-family: "Courier New", monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l6 {
+            padding-left: 0pt;
+        }
+
+        #l6>li>*:first-child:before {
+            content: "• ";
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l7 {
+            padding-left: 0pt;
+        }
+
+        #l7>li>*:first-child:before {
+            content: "● ";
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l8 {
+            padding-left: 0pt;
+        }
+
+        #l8>li>*:first-child:before {
+            content: "● ";
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l9 {
+            padding-left: 0pt;
+        }
+
+        #l9>li>*:first-child:before {
+            content: "• ";
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        table,
+        tbody {
+            vertical-align: top;
+            overflow: visible;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="padding-top: 3pt;text-indent: 0pt;text-align: center;">STUDY INFORMED CONSENT FORM</h1>
+    <h1 style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Study Title: <span class="p">Barbera
+        </span><i>(“</i>Study<i>”)</i></h1>
+    <h1 style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Study Lead: <a
+            href="mailto:ari.heiskanen@telusinternational.com" class="a" target="_blank">Ari Heiskanen, </a><a
+            href="mailto:ari.heiskanen@telusinternational.com" target="_blank">ari.heiskanen@telusinternational.com</a>
+    </h1>
+    <p style="padding-top: 4pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">You are receiving this Study Informed Consent Form
+        (“<b>Consent</b>”) because you were asked to participate in a voluntary research Study run by TELUS
+        International AI, Inc. (“<b>Study Organizer</b>”) on behalf of Apple Inc., (the “<b>Study Sponsor</b>”).</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Apple Inc., located at One Apple Park Way,
+        Cupertino, California, USA, is the data controller for this Study.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Apple Canada Inc., located at 120 Bremner Boulevard,
+        Suite 1600 Toronto, ON M5J 0A8 Canada, is the data controller for this Study.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Apple Pty Limited, located at Level 3, 20 Martin
+        Place, Sydney NSW 2000, Australia, is the data controller for this Study.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Apple Distribution International Ltd, located at
+        Hollyhill Industrial Estate, Cork, Ireland, is the data controller for this Study.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">This Consent will tell you the following about this
+        Study:</p>
+    <ol id="l1">
+        <li data-list-text="(1)">
+            <p style="padding-top: 6pt;padding-left: 32pt;text-indent: -18pt;text-align: left;">Its purpose and what you
+                will be asked to do;</p>
+        </li>
+        <li data-list-text="(2)">
+            <p style="padding-top: 6pt;padding-left: 32pt;text-indent: -18pt;text-align: left;">The information that may
+                be collected from you and how it will be used or disclosed;</p>
+        </li>
+        <li data-list-text="(3)">
+            <p style="padding-top: 6pt;padding-left: 32pt;text-indent: -18pt;text-align: left;">Potential risks and
+                discomforts;</p>
+        </li>
+        <li data-list-text="(4)">
+            <p style="padding-top: 6pt;padding-left: 32pt;text-indent: -18pt;text-align: left;">Your confidentiality
+                obligations if you decide to take part in the Study; and</p>
+        </li>
+        <li data-list-text="(5)">
+            <p style="padding-top: 6pt;padding-left: 32pt;text-indent: -18pt;text-align: left;">How you may stop being
+                in the Study and what happens to your information after you stop.</p>
+        </li>
+    </ol>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">PLEASE READ THIS CONSENT CAREFULLY AND ASK ANY
+        QUESTIONS YOU HAVE ABOUT THE STUDY BEFORE SIGNING THIS FORM.</h1>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Your decision to take part in this Study is
+        completely voluntary and you can decide not to participate or stop participating at any time<span
+            class="p">.</span></h1>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">WHY IS THIS STUDY BEING DONE?</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">The purpose of this Study is to collect email, email
+        attachment and text message templates generated by third-party companies or vendors for various types of booking
+        reservations, such as dining, travel, accommodations, tickets (e.g., to concerts, movies, sporting events),
+        transportation (e.g., car rental, ticketed ground transport), medical appointments, party invitations (from the
+        third-party invitation provider), and other</p>
+    <p style="padding-top: 3pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">appointments or events
+        (collectively, “Booking Reservations”). This data will be used to develop, test, and improve features, services,
+        and algorithms, including training generative models, neural networks, and other machine learning algorithms and
+        technologies.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">WHAT WILL I BE ASKED TO DO?</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">A member of the team conducting the Study (“<b>Study
+            Team</b>”) will discuss with you the Study procedures, risks, and who may participate in this Study. You
+        will be asked to donate emails and text messages relating to Booking Reservations that already exist in your
+        inbox<span style=" color: #333;">.</span></p>
+    <p class="s2" style="padding-left: 41pt;text-indent: -18pt;text-align: left;">- <span style=" color: #000;">You will
+            be able to choose which emails and text messages you are willing to donate and can choose not to donate
+            emails and text messages you are not comfortable sharing with the Study. Please be mindful not to include
+            data that includes or could suggest sensitive information about you or someone else. . This Study is not a
+            health or wellness study nor is it intended to capture your response to external or internal stimuli or any
+            intervention.</span></p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you signed a Contributor Services Agreement
+        and/or any other document with the Study Organizer, any parts of these documents that conflict with this Consent
+        do not apply to your participation in this Study. For instance, any language that creates an independent
+        contractor relationship with Study participants, waives or appears to waive your legal rights, or releases or
+        appears to release the Study Organizer, Study Sponsor, or their agents from liability for negligence, does not
+        apply to your participation in this Study.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">WHERE IS THIS STUDY BEING DONE?</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">This Study is remote.</p>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">HOW MANY PEOPLE WILL BE IN THIS STUDY?</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">This Study will enroll a maximum of 5000 subjects.
+    </p>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">HOW LONG WILL I BE IN THIS STUDY?</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Your participation in this Study is expected to last
+        between 1-4 hours.</p>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">WHO CAN PARTICIPATE IN THIS STUDY?</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">You can participate in this Study if:</p>
+    <ul id="l2">
+        <li data-list-text="●">
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">You are at least 18 years old (19 in
+                Quebec, Nebraska, and Alabama and 21 in Puerto Rico).</p>
+        </li>
+        <li data-list-text="●">
+            <p style="padding-left: 40pt;text-indent: -17pt;text-align: left;">Your emails, email attachments and text
+                messages are in English.</p>
+        </li>
+        <li data-list-text="●">
+            <p style="padding-left: 40pt;text-indent: -17pt;text-align: left;">You have access to the internet or WIFI.
+            </p>
+        </li>
+    </ul>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-top: 3pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">WHAT ARE THE POSSIBLE RISKS OR
+        DISCOMFORTS?</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">No significant risks or permanent side effects are
+        anticipated.</p>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you signed a Contributor Services Agreement
+        and/or any other document with the Study Organizer, any parts of those documents that conflict with this Consent
+        do not apply to your participation in this Study. For instance, any language that creates and independent
+        contractor relationship, waives or appears to waive your legal rights or releases or appears to release the
+        Study Organizer, Study Sponsor, or their agents from liability for negligence, does not apply to your
+        participation in this Study.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">There may be privacy risks which are described below
+        in the section “How Will My Study Data Be Kept Confidential.” There may be risks that we do not know about. The
+        Study Team will tell you about any new information that relates to the Study that may affect your decision to
+        stay in the Study. <b>If you experience any pain, discomfort, side effects, or believe that you have been
+            injured as a result of the Study, </b>you should seek necessary medical care and notify the Study Lead as
+        soon as possible.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">WHAT DATA WILL BE COLLECTED AND HOW LONG WILL IT BE
+        KEPT?</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">As part of this Study, the following data may be
+        collected or accessed (collectively, “<b>Study Data</b>”):</p>
+    <p style="padding-top: 6pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <ul id="l3">
+        <li data-list-text="●">
+            <h1 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Contact Information<span class="p">:
+                    Your name, email address will be collected during Study recruitment. Your Contact Information will
+                    be deleted within 5 years after the Study ends.</span></h1>
+            <ul id="l4">
+                <li data-list-text="o">
+                    <p style="padding-top: 3pt;padding-left: 59pt;text-indent: -18pt;text-align: left;">Your Contact
+                        Information will be separated from your other Study Data listed below. The remaining Study Data
+                        will be assigned a code (we use the word “<b>Coded</b>” to describe these data that is,
+                        “<b>Coded Study Data</b>”) so that it cannot easily be linked to you Your Coded Study Data will
+                        be retained for as long as necessary for the purposes described in this Consent.</p>
+                    <p style="padding-top: 3pt;text-indent: 0pt;text-align: left;"><br /></p>
+                </li>
+            </ul>
+        </li>
+        <li data-list-text="●">
+            <h1 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Email, Email Attachment and Text Message
+                Data: <span class="p">We will collect emails and text messages you choose to donate to the Study that
+                    contain the templates relating to Booking Reservations, such as confirmations, cancellations,
+                    modifications, updates, or other changes. Upon receiving your Email, Email Attachment and Text
+                    Message Data, we will take steps to remove personally identifiable information (e.g., name,
+                    username, email, ID numbers, personal address, SSN, date of birth, etc.). Your Email, Email
+                    Attachment and Text Message Data will be retained for as long as necessary for the purposes
+                    described in this Consent, except that Booking Reservations related to medical appointments will be
+                    deleted within 5 years after the Study ends. Your Email, Email Attachment and Text Message Data may
+                    contain the following data elements:</span></h1>
+            <ul id="l5">
+                <li data-list-text="o">
+                    <p style="padding-top: 3pt;padding-left: 59pt;text-indent: -18pt;text-align: left;">Except as noted
+                        below in connection with medical appointments, for all Booking Reservations, we will collect the
+                        following information as provided in the template fields, as applicable to each Booking
+                        Reservation: business names, business emails, business addresses and phone numbers, the type of
+                        reservation (e.g., dining, flight, concert, party), the date and time of the reservation, the
+                        nature of the template (e.g., confirmation, cancellation, modification), the date and time the
+                        reservation was made, the date and time of the Booking Reservation, and the receipt date and
+                        time of the email or text message. We will collect additional fields relevant to the Booking
+                        Reservations that you choose to provide, such as flight numbers, airline codes, reason for the
+                        Booking Reservation (e.g., anniversary, birthday), and other location information (e.g.,
+                        destinations or stops, room numbers).</p>
+                </li>
+                <li data-list-text="o">
+                    <p style="padding-left: 59pt;text-indent: -18pt;text-align: left;">Specifically for medical
+                        appointments, we will collect the name of the medical entity, medical entity email address,
+                        medical entity physical address, medical entity phone number, event type (appointment
+                        confirmation, cancellation, modification, etc.), and type of provider (general doctor, specialty
+                        doctor, or dentist). We will take steps to redact appointment date and time, procedure type,
+                        individual providers’ names and emails, and individualized URLs.</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">HOW WILL MY STUDY DATA BE KEPT CONFIDENTIAL?</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Your Contact Information will be held securely by
+        Study Organizer, and access limited to Study Organizer personnel who need access to manage the Study. Your
+        remaining Study Data will be separated from your Contact Information and assigned a code (we use the word
+        “<b>Coded</b>” to describe these data that is, “<b>Coded Study Data</b>”). Your Coded Study Data will be
+        maintained by Study Sponsor in a central study database with other subjects’ Coded Study Data.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">All Study Data that identifies you will be protected
+        and treated as confidential. As discussed above, you will be able to choose which emails, email attachments and
+        text messages you are willing to donate. Please be mindful not to include data that includes or could suggest
+        sensitive information. There is also the risk of unauthorized access to your Study Data, though Apple has
+        implemented appropriate information security measures. Further, if you are in multiple studies, your Study Data
+        may be combined across those studies, which could increase the risk that someone could identify you.</p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">There may be other privacy risks that we cannot
+        anticipate now.</p>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">For more information on how Study Data will be kept
+        secure and confidential, please contact the Study Lead listed above.</p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">INTERNATIONAL TRANSFER OF STUDY DATA.</h1>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Your Consent to Transfer. <span class="p">Study
+            Sponsor is a global company with affiliates in many countries undertaking research and development. As a
+            result, your Study Data, including Coded Study Data, may be transferred to Study Sponsor in the United
+            States and other Study Sponsor related entities and third parties designated by Study Sponsor</span></h1>
+    <p style="padding-top: 3pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">in other countries. These other
+        countries may not have laws as protective as the data protection laws in the country where you reside. It is
+        also possible that the country to which the Study Data is sent will have laws that permit the government to
+        request access to data held by private companies, such as Study Sponsor; however, we do not anticipate such
+        requests for your Study Data. Regardless of the country where your Study Data is used and maintained by Study
+        Sponsor, its affiliates, and its contracted third parties, it will be used and maintained only for the purposes
+        described in this Consent and it will be protected as described in this consent. If you do not want to permit
+        your Study Data to be transferred internationally, you should not sign this Consent. However, you must sign this
+        Consent to participate in the Study.</p>
+    <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+    <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Other Data Transfer Mechanisms. <span class="p">In
+            addition to your consent to transfer, the transfer of Study Data, including Coded Study Data, to Study
+            Sponsor and its designated third parties in other countries will, where applicable and where required, also
+            abide by the requirements for international data transfers established for that jurisdiction. These
+            entities, where applicable, will subscribe to an appropriate legal instrument for the international transfer
+            of data to the United States,
+            or will be bound by appropriate contractual arrangements (such as Standard Contractual Clauses approved by
+            the European Commission or the International Data
+            Transfer Addendum approved by the UK Information Commissioner), or binding
+            corporate rules to protect your Personal Information. Study Sponsor also abides by the Asia-Pacific Economic
+            Cooperation (APEC)’s Cross Border Privacy Rules (CBPR) System to protect personal information, including
+            Study Data, transferred among participating APEC economies.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">HOW MAY MY STUDY DATA BE USED AND
+                DISCLOSED?</h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Your Study Data (and where possible, only
+                your Coded
+                Study Data) may be collected, used, stored, analyzed, maintained, disclosed, and otherwise processed,
+                for the
+                purposes of this Study as described above (“Why is this Study being done?”) as well as for related
+                research and
+                product and service development purposes undertaken by or on behalf of Study Sponsor. In particular,
+                your Study
+                Data may be used:</p>
+            <ul id="l6">
+                <li data-list-text="•">
+                    <p style="padding-left: 57pt;text-indent: -34pt;text-align: left;">To support and carry out the
+                        Study.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-left: 57pt;text-indent: -34pt;text-align: left;">To verify that the Study is done
+                        properly.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-left: 57pt;text-indent: -34pt;text-align: left;">To contact you about the Study,
+                        as
+                        necessary.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-left: 57pt;text-indent: -34pt;text-align: left;">To analyze the Coded Study Data
+                        and
+                        publish results.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-left: 57pt;text-indent: -34pt;text-align: left;">To design or improve future
+                        studies.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">To combine data and results from
+                        this
+                        Study (including Coded Study Data) with data and results from other related Study Sponsor
+                        studies whose
+                        purpose is similar to the purpose of this Study.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-left: 39pt;text-indent: -16pt;text-align: left;">For Study Sponsor’s development,
+                        design,
+                        approval (including regulatory approval), improvement, production, publication, and/or support
+                        of
+                        products, technologies, processes, and services, including algorithm development.</p>
+                </li>
+            </ul>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Your Study Data, including your Coded Study
+                Data,
+                may be shared with, collected, used, stored, analyzed, maintained, disclosed, and otherwise processed
+                for the
+                purposes stated above by Study Sponsor personnel, external entities with whom Study Sponsor may choose
+                to
+                collaborate
+                (under appropriate contractual obligations), and designated third parties acting on behalf of Study
+                Sponsor
+                (also with appropriate contractual obligations).</p>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">When required by law, Study Data in
+                identifiable
+                form may be provided to third parties such as public, regulatory, or government authorities, including
+                law
+                enforcement.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">The results of this Study may be published
+                or
+                presented but will not include any information that would let others know who you are.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you are contacted regarding future
+                studies, you
+                may choose not to participate.</p>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">WHAT PERSONAL DATA RIGHTS DO I HAVE?</h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Certain Study Data that could be linked to
+                you as an
+                identified or identifiable individual or could be reasonably associated with you may be considered to be
+                personal data (collectively, “<b>Personal Data</b>”). You may contact the Study Lead at any time to
+                request
+                deletion of your Personal Data associated with your Study Data. In some circumstances, deletion of your
+                Personal
+                Data may not be feasible (for instance, if your Coded Study Data has been de-linked from your Contact
+                Information). However, reasonable efforts will be made to delete Personal Data within a reasonable
+                amount of
+                time of your request.</p>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you decide to participate in this Study,
+                you also
+                may have the right to request access to any Personal Data collected about you as part of this Study and
+                the
+                right to request that any such Personal Data be corrected, amended, blocked, or deleted. You also have
+                the right
+                to withdraw your consent to the processing of your Personal Data at any time. If you withdraw your
+                consent, we
+                will stop using your Study Data, including your Coded Study Data, but withdrawing your consent will not
+                affect
+                the lawfulness of processing based on this Consent before its withdrawal. In some circumstances, we may
+                not be
+                able to complete the actions you request. For example, if your Coded Study Data has been de-linked from,
+                or we
+                do not have access to, your Contact Information, or where applicable law would permit or require us to
+                continue
+                processing certain of your</p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Personal Data. You also have the right to
+                object to
+                the collection of any data and withdraw from this Study at any time.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">You may withdraw from the Study at any time.
+                Information on how to withdraw is included in the “Can I Stop Being In This Study?” section below.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you are a resident of the state of
+                California,
+                Virginia, Colorado, Connecticut, Washington, or a state with a similar privacy law, the following may
+                apply to
+                you:</p>
+            <ul id="l7">
+                <li data-list-text="●">
+                    <p style="padding-top: 6pt;padding-left: 41pt;text-indent: -18pt;text-align: left;">If you decide to
+                        take
+                        part in the Study, you may have certain rights with regard to your Personal Data, including the
+                        right to
+                        request access to Personal Data collected about you as part of this Study. You also have the
+                        right to
+                        request that such Personal Data be corrected or deleted or with certain Personal Data you may be
+                        able to
+                        withdraw
+                        your consent for processing of such data. You may freely exercise these rights without
+                        discrimination.
+                    </p>
+                </li>
+                <li data-list-text="●">
+                    <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Reasonable efforts will be made
+                        to comply
+                        with your request within a reasonable amount of time.</p>
+                </li>
+                <li data-list-text="●">
+                    <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">In some circumstances, we may not
+                        be able to complete the actions you request. For example, we may be permitted or required to
+                        retain all or part of your Personal Data for certain purposes including when required by law.
+                        Also, it may not be possible to delete or take other actions with respect to your Personal Data
+                        if your Contact Information was removed from your Coded Study Data.</p>
+                    <p style="padding-left: 41pt;text-indent: 0pt;text-align: left;">Additionally, if you request to
+                        withdraw
+                        your consent for the processing of certain of your Personal Data, it may act as a withdrawal
+                        from the
+                        Study and you may no longer be able to participate in the Study. You may withdraw from the Study
+                        at any
+                        time as stated above.</p>
+                </li>
+                <li data-list-text="●">
+                    <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">You can exercise the above rights
+                        by
+                        contacting the Study Lead.</p>
+                </li>
+                <li data-list-text="●">
+                    <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">You may appeal any decision by
+                        contacting
+                        the Study Lead.</p>
+                </li>
+            </ul>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><a href="mailto:dpo@apple.com" class="a"
+                    target="_blank">You can place a request to exercise any of these Personal Data rights at any time by
+                    contacting the Study Lead listed above. You may also contact Apple’s Data Protection Officer at
+                </a>dpo@apple.com. If you are unsatisfied with the reply received, you may refer your complaint to the
+                relevant
+                supervisory authority in your jurisdiction.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">ARE THERE BENEFITS TO BEING IN THIS STUDY?
+            </h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">The goal of this Study is to obtain
+                information
+                related to the Study purposes, so, you will not receive any direct benefit from this Study.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">ARE THERE ANY OPTIONS OTHER THAN BEING IN
+                THIS
+                STUDY?</h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">The only other option is not to participate
+                in this
+                Study.</p>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">WILL IT COST ANYTHING TO BE IN THIS STUDY?
+            </h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Forwarding data for the Study may use your
+                data plan
+                unless you turn off cellular data for the app you use in Settings. Standard phone charges may apply when
+                you
+                communicate with the Study staff on your personal device. You will not be reimbursed for these charges
+                or any
+                cellular charges.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">WILL I GET PAID FOR BEING IN THIS STUDY?
+            </h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">You will be compensated 0.60 USD per email
+                and 0.40
+                USD
+                per text message for items accepted in the quality assurance. The payments are made electronically via
+                Hyperwallet on Telus International community platform. If you receive any compensation it may be
+                taxable. Please
+                consult with a tax advisor about any reporting requirements.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">CAN I STOP BEING IN THIS STUDY?</h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-top: 3pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">You may stop being in this
+                Study at
+                any time, for any reason, without penalty by contacting a member of the Study Team, or the Study
+                Organizer,
+                including the Study Lead.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you choose to withdraw from the Study,
+                Study data
+                collected up to that point may continue to be used and kept as described in this Consent. You may
+                request that
+                your Study Data be deleted, as stated above in the “What Data Rights Do I Have” section.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">COULD MY PARTICIPATION BE STOPPED EARLY?
+            </h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">You may be removed from this Study by the
+                Study
+                Organizer, the Study Team, or the Study Moderators for a number of reasons, such as:</p>
+            <ul id="l8">
+                <li data-list-text="●">
+                    <p style="padding-left: 32pt;text-indent: -18pt;text-align: left;">You did not follow the
+                        confidentiality
+                        requirements described below;</p>
+                </li>
+                <li data-list-text="●">
+                    <p style="padding-left: 32pt;text-indent: -18pt;text-align: left;">You no longer meet the criteria
+                        for
+                        participating in the Study;</p>
+                </li>
+                <li data-list-text="●">
+                    <p style="padding-left: 32pt;text-indent: -18pt;text-align: left;">The Study is stopped; and</p>
+                </li>
+                <li data-list-text="●">
+                    <p style="padding-left: 32pt;text-indent: -18pt;text-align: left;">At the discretion of the Study
+                        Team.</p>
+                </li>
+            </ul>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you are removed from the Study, Study
+                Data
+                collected up to that point may continue to be used and kept as described in this Consent. You may
+                request that
+                your Study Data be deleted, as stated above in the “What Data Rights Do I Have” section.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">DO I HAVE ANY OBLIGATIONS AT THE END OF
+                PARTICIPATING IN THE STUDY?</h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">At the end of your time in the Study, you
+                will be
+                asked to follow directions from the Study Team such as returning Study hardware to the Study Team and/or
+                deleting Study apps or other materials from your devices or systems.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">WHO CAN I TALK TO ABOUT THE STUDY?</h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><a
+                    href="mailto:ari.heiskanen@telusinternational.com" class="a" target="_blank">If a Study-related
+                    problem
+                    occurs, or if you have any questions about this Study at any time, please contact the Study Lead at
+                </a><a href="mailto:ari.heiskanen@telusinternational.com"
+                    target="_blank">ari.heiskanen@telusinternational.com.</a>
+            </p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><a
+                    href="mailto:ari.heiskanen@telusinternational.com" class="a" target="_blank">If you want to voice
+                    complaints
+                    or concerns about this Study, have questions not addressed by the Study Team, or have questions
+                    about your
+                    general rights in this Study, please contact the following Study Moderators: Ari Heiskanen at </a><a
+                    href="mailto:ari.heiskanen@telusinternational.com"
+                    target="_blank">ari.heiskanen@telusinternational.com.</a>
+            </p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">YOUR CONFIDENTIALITY OBLIGATIONS.</h1>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you agree to participate in this Study,
+                you must
+                also agree to not disclose any information from or about this Study with anyone outside of the Study
+                Team, or
+                Study Moderators, except as listed in this Consent, without first obtaining approval from the Study
+                Lead.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">What is considered confidential?</h1>
+            <p style="padding-top: 3pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">The fact that the Study
+                Organizer
+                and the Study Sponsor areconducting this Study, the types and methods of data collection, and any other
+                detail
+                about the Study or how it is conducted are confidential. Any information that you learn about this
+                Study,
+                including technical information and any other
+                information
+                identified as non-public information is considered confidential and proprietary information that belongs
+                to
+                Study Sponsor and must not be disclosed by you.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Who needs to know?</h1>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Do not assume that anyone knows, or needs to
+                know,
+                information about this Study. Do not talk to anyone about this Study with anyone outside of the Study
+                Team
+                except with:</p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">1) your medical providers if needed to
+                determine
+                whether it is safe for you to participate in this Study or if you believe you may have been injured as a
+                result
+                of this Study; (2) family members or individuals you live with as needed for remote elements of Study
+                participation; and (3) family members if you have concerns about participating in this Study. If you
+                decide it’s
+                necessary to discuss this Study with anyone, you must first obtain agreement from them not to share any
+                information about this Study, including your participation in the Study.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">No disclosures, photos, videos or social
+                media.
+            </h1>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">You should not take any photographs or
+                videos of
+                anything related to this Study, except as specifically required as part of the Study procedures. You
+                should
+                never post anything about this Study on social media.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you become aware of any unauthorized
+                disclosure
+                of confidential information, including a disclosure by a family member or other individual, please
+                report it
+                immediately to a member of the Study Team, or to a Study Moderator.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If you have any questions that are not
+                addressed
+                here, please discuss with a member of the Study Team, or a Study Moderator.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p class="s4" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">CONSENT</p>
+            <p style="padding-top: 1pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">By signing this Consent, I acknowledge and
+                agree:
+            </p>
+            <p style="padding-top: 7pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <ul id="l9">
+                <li data-list-text="•">
+                    <p style="padding-left: 23pt;text-indent: -18pt;line-height: 133%;text-align: left;">I have
+                        carefully read
+                        this Consent, written in English, which is a language that I read and understand.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-top: 2pt;padding-left: 22pt;text-indent: -17pt;text-align: left;">I have received
+                        answers
+                        to my questions.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-top: 2pt;padding-left: 22pt;text-indent: -17pt;text-align: left;">I am
+                        voluntarily
+                        signing this Consent and I consent to participate in this Study.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-top: 2pt;padding-left: 22pt;text-indent: -17pt;text-align: left;">I agree that I
+                        will
+                        keep confidential all information disclosed to me during the Study.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-top: 2pt;padding-left: 22pt;text-indent: -17pt;text-align: left;">
+                        I
+                        agree to the collection, use, sharing, disclosure, transfer, including transfer to other
+                        countries, and maintenance of my Study Data as described in this Consent.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-top: 2pt;padding-left: 22pt;text-indent: -17pt;text-align: left;">I understand
+                        that I can
+                        stop being in this Study at any time.</p>
+                </li>
+                <li data-list-text="•">
+                    <p style="padding-top: 2pt;padding-left: 22pt;text-indent: -17pt;text-align: left;">I understand
+                        that I will
+                        receive a copy of this Consent form after I sign it.</p>
+                </li>
+            </ul>
+            <p style="padding-top: 5pt;text-indent: 0pt;text-align: left;"><br /></p>
+            <h1 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">By signing this Consent, I consent to the
+                collection, processing, and transfer of my Study Data for the purpose of this Study, as described in
+                this
+                Consent.</h1>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;">If this is an electronic consent, I
+                understand that
+                by clicking accept or typing my name and the date below I am providing my consent electronically and
+                that it has
+                the same force and effect as if I was signing in person on paper.</p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+</body>
+
+</html>

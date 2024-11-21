@@ -1,0 +1,142 @@
+#qaTool #textContainer {
+    display: flex;
+    flex-direction: row;
+    gap: .5em;
+}
+
+#qaTool #textContainer #textFields {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    flex-grow: 1;
+    /* flex-wrap: wrap; */
+}
+
+#qaTool #textContainer #textFields .input-field {
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+}
+
+#qaTool #textContainer #textFields .input-field.selected div {
+    background: greenyellow !important;
+}
+
+#qaTool #textContainer #textFields .input-field .header {
+    font-weight: bold;
+    user-select: none;
+}
+
+#qaTool #textContainer #textFields .input-field input,
+#qaTool #textContainer #textFields .input-field select {
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+    border: none;
+    padding: .4em;
+    border-radius: .3em;
+}
+
+#qaTool #textContainer #textFields #toggleAttachment {
+    min-width: 15em;
+    display: flex;
+    flex-direction: row;
+    gap: .5em;
+    justify-content: space-around;
+}
+
+#qaTool #textContainer #textFields #toggleAttachment button {
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+    border: none;
+    padding: .4em;
+    border-radius: .3em;
+    user-select: none;
+    background: rgba(128, 128, 128, 0.3);
+    font-weight: bold;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+#qaTool #textContainer #textFields #toggleAttachment button.selected {
+    cursor: default;
+    background: var(--telus-color-2);
+    color: var(--link-text-1);
+}
+
+#qaTool #textContainer #textFields #toggleAttachment button.disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+#qaTool #textContainer #textFields button#removeRedactedAttachment {
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+    border: none;
+    padding: .4em;
+    border-radius: .3em;
+    user-select: none;
+    background: red;
+    color: var(--link-text-1);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#qaTool #textContainer #textFields button#removeRedactedAttachment:hover {
+    color: var(--link-hover-text-1);
+}
+
+#qaTool #textContainer #textFields #subjectContainerDiv {
+    background: white;
+    border-radius: .3em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    padding: .5em;
+    min-height: 3em;
+    overflow-wrap: break-word;
+}
+
+#qaTool #textContainer #textFields #messageContainerDiv {
+    background: white;
+    border-radius: .3em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    padding: .5em;
+    min-height: 10em;
+    max-height: 30em;
+    max-width: 20em;
+    overflow-wrap: break-word;
+    overflow: auto;
+}
+
+#qaTool #textContainer #textFields #subjectContainerDiv label[pii-type-id],
+#qaTool #textContainer #textFields #messageContainerDiv label[pii-type-id] {
+    background: yellow;
+    color: black;
+    border-radius: .1em;
+    user-select: none;
+    cursor: text;
+}
+
+#qaTool #textContainer #textFields .fas {
+    cursor: pointer;
+    margin-left: .5em;
+    text-decoration: none;
+    color: var(--telus-color-1);
+}
+
+#qaTool #textContainer #textFields .fas:hover {
+    color: var(--telus-color-2);
+}
+
+#qaTool #textContainer #textFields textarea {
+    font-size: 1em;
+    width: 100%;
+    padding: .3em;
+    resize: vertical;
+    min-height: 4em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+    border-radius: .3em;
+}
+
+#qaTool #textContainer #textFields textarea::placeholder {
+    font-style: italic;
+}

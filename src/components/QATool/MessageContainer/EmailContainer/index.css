@@ -1,0 +1,29 @@
+#qaTool #mainMessageContainer #emailContainer {
+    background: white;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    padding: 1em;
+    width: 50em;
+    height: calc(100vh - 3em);
+    flex-grow: 1;
+    border: 1px solid black;
+    overflow: auto;
+}
+
+#qaTool #mainMessageContainer #loading {
+    background: white;
+    width: 50em;
+    height: calc(100vh - 3em);
+    flex-grow: 1;
+    border: 1px solid black;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#qaTool #mainMessageContainer #loading span {
+    font-size: 3em;
+    font-weight: bold;
+    font-style: italic;
+}
