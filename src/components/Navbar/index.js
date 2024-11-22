@@ -16,6 +16,7 @@ import appInfo from '../../../package.json';
 const Navbar = ({ setUserId, showStats, setShowStats, showLog, setShowLog, showDeliveryTargetsTable, setShowDeliveryTargetsTable }) => {
     const userInfo = useSelector((state) => state.userInfo.value || {});
     const userId = userInfo['userId'];
+    const name = userInfo['name'];
     const userRole = userInfo['role'];
     const admin = ['admin'].includes(userRole);
 
@@ -104,8 +105,8 @@ const Navbar = ({ setUserId, showStats, setShowStats, showLog, setShowLog, showD
     return <nav id="navbar">
         <img src={telusLogo} alt="Telus Digital" />
         <span id="projectName">| Tokoro</span>
-        <span id="navbarTitle" />
         {/* {userRole === 'admin' ? <a href="/registration-form" onClick={(e) => { e.preventDefault(); navigate("/registration-form"); }}>Register new moderator</a> : ''} */}
+        {name ? <span id="userName">Welcome, {name}</span> : ''}
         {<a href="/registration-form" onClick={(e) => { e.preventDefault(); navigate("/registration-form"); }}>Register new moderator</a>}
         {<a href="/video-tagging" onClick={(e) => { e.preventDefault(); navigate("/video-tagging"); }}>Video Tagging</a>}
 

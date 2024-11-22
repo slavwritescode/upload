@@ -24,6 +24,7 @@ const RegistrationPage = () => {
 
             temp['role'] = role;
             temp['userId'] = userId;
+            temp['name'] = name;
             dispatch(updateUserInfo(temp))
             navigate('/video-tagging');
             setIsRegistering(false);

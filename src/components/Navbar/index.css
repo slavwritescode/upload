@@ -21,6 +21,10 @@
   line-height: 1.2;
 }
 
+#navbar .name { 
+  color: var(--link-text-1);
+}
+
 #navbar a {
   padding: 0 .5em;
   border: none;
