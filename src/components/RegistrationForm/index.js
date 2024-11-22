@@ -2,8 +2,7 @@ import { useForm } from "react-hook-form"
 import Swal from "sweetalert2";
 import BeatLoader from "react-spinners/ClipLoader";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserInfo } from "../../Redux/Features/userInfo";
 
 import './index.css';
@@ -12,9 +11,18 @@ import { backend, realtimeDb } from '../../firebase/config';
 //the error messages can come from constants....
 const RegistrationPage = () => {
     const [isRegistering, setIsRegistering] = useState(false);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const temp = {};
+
+    //might be cool to use this for admins so that when they create a moderator they can just copy paste it...
+    const copyCredentialsToClipboard = (values) => {
+        const valuesString = JSON.stringify(values);
+        navigator.clipboard.writeText(valuesString).then(() => {
+            console.log('Credentials copied to clipboard');
+        }).catch(err => {
+            console.error('Failed to copy credentials: ', err);
+        });
+    }
 
     const writeUserDataToDb = async (uid, name, role, userId) => {
 
@@ -22,11 +30,12 @@ const RegistrationPage = () => {
         await userRef.set({ name: name, role: role, userId: userId });
         userRef.on('value', (snapshot) => {
 
-            temp['role'] = role;
-            temp['userId'] = userId;
+            // temp['role'] = role;
+            // temp['userId'] = userId;
+
             temp['name'] = name;
             dispatch(updateUserInfo(temp))
-            navigate('/video-tagging');
+            // navigate('/video-tagging');
             setIsRegistering(false);
         });
 
@@ -72,11 +81,9 @@ const RegistrationPage = () => {
                 const name = res.name;
                 const role = res.role;
                 const userId = res.userId;
-                //lets change the dispatch location
-                // temp['role'] = role;
-                // temp['userId'] = userId;
-                // dispatch(updateUserInfo(temp))
-                //todo
+
+                const values = `Email: ${data.email}, Password: ${data.password}`;
+                copyCredentialsToClipboard(values);
                 const write = await writeUserDataToDb(newUid, name, role, userId);
                 return write;
 

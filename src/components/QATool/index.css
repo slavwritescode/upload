@@ -1,7 +1,0 @@
-#qaTool {
-    display: flex;
-    flex-direction: row;
-    overflow: auto;
-    background-color: var(--body-color);
-    flex-grow: 1;
-}

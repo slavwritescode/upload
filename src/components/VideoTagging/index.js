@@ -140,7 +140,7 @@ const VideoTagging = () => {
             </div>
             <div id="uploadForm">
 
-                <h2>Upload File and Reviw it</h2>
+                <h2>Upload File and Review it</h2>
                 <div className="uploadControls">
                     <input type="file" onChange={handleFileChange} />
                     <button onClick={handleUpload} disabled={!file}>
