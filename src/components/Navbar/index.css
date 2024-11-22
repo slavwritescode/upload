@@ -21,8 +21,10 @@
   line-height: 1.2;
 }
 
-#navbar .name { 
+#navbar #userName { 
   color: var(--link-text-1);
+  font-weight: bold;
+  
 }
 
 #navbar a {

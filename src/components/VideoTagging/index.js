@@ -136,15 +136,17 @@ const VideoTagging = () => {
                 </div>
             )} */}
             <div id="taggingControls">
-
+                {/* <VideoPreview videoUrl={ } keyIdentifier={ } /> */}
             </div>
             <div id="uploadForm">
 
-                <h2>Upload File and Tag it</h2>
-                <input type="file" onChange={handleFileChange} />
-                <button onClick={handleUpload} disabled={!file}>
-                    Upload File
-                </button>
+                <h2>Upload File and Reviw it</h2>
+                <div className="uploadControls">
+                    <input type="file" onChange={handleFileChange} />
+                    <button onClick={handleUpload} disabled={!file}>
+                        Upload File
+                    </button>
+                </div>
                 {progress > 0 && (
                     <div>
                         <p>Progress: {progress.toFixed(2)}%</p>

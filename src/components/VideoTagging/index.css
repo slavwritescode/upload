@@ -16,6 +16,38 @@
     margin: 0 auto;
 }
 
+#videoTaggingPage #uploadForm .uploadControls {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#videoTaggingPage #uploadForm .uploadControls button:enabled {
+    padding: 1em 2em;
+    max-width: 80%;
+    border: none;
+    background: rgba(75, 40, 109);
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+    cursor: pointer;
+}
+
+#videoTaggingPage #uploadForm .uploadControls button:disabled {
+    padding: .1em 1em;
+    border: none;
+    background: gray;
+    color: darkgray;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+    cursor: pointer;
+}
+
+
 #videoTaggingPage h3 {
     margin: 1em;
 }
