@@ -111,6 +111,15 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                                 <label htmlFor={clothingItem}>{clothingItem}</label>
                             </div>)}
                     </fieldset>
+                    <fieldset>
+                        <legend>Choose all accessories that apply</legend>
+                        {Object.values(Constants['accessories'])
+                            .sort((a, b) => a.localeCompare(b))
+                            .map(accessoryItem => <div key={accessoryItem}>
+                                <input type="checkbox" id={accessoryItem} value={accessoryItem} />
+                                <label htmlFor={accessoryItem}>{accessoryItem}</label>
+                            </div>)}
+                    </fieldset>
                     <button type="submit" id="reviewButton">Confirm selections</button>
                 </form>
             </div>

@@ -1683,7 +1683,23 @@ const Constants = {
         6: "sportswear",
         7: "none",
         8: "other"
+    },
+    accessories: {
+        //bear in mind that here multiple selections are probable so perhaps checkboxes
+        0: "sunglasses",
+        1: "reading glasses",
+        2: "mask",
+        3: "scarf",
+        4: "necklace",
+        5: "earrings",
+        6: "nose rings",
+        7: "finger rings",
+        8: "bracelets",
+        9: "watch",
+        10: "none",
+        11: "other"
     }
+
 }
 
 export default Constants;

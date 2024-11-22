@@ -106,9 +106,9 @@ const Navbar = ({ setUserId, showStats, setShowStats, showLog, setShowLog, showD
         <img src={telusLogo} alt="Telus Digital" />
         <span id="projectName">| Tokoro</span>
         {/* {userRole === 'admin' ? <a href="/registration-form" onClick={(e) => { e.preventDefault(); navigate("/registration-form"); }}>Register new moderator</a> : ''} */}
-        {name ? <span id="userName">Welcome, {name}</span> : ''}
+        {name && userRole === 'moderator' ? <span id="userName">Welcome, {name}</span> : ''}
         {<a href="/registration-form" onClick={(e) => { e.preventDefault(); navigate("/registration-form"); }}>Register new moderator</a>}
-        {<a href="/video-tagging" onClick={(e) => { e.preventDefault(); navigate("/video-tagging"); }}>Video Tagging</a>}
+        {userRole === 'moderator' ? <a href="/video-tagging" onClick={(e) => { e.preventDefault(); navigate("/video-tagging"); }}>Video Tagging</a> : ''}
 
         <a href="/" onClick={(e) => { e.preventDefault(); handleLogout(); navigate("/"); }}>Logout</a>
     </nav>
