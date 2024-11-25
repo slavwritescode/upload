@@ -16,20 +16,31 @@ const LoginPage = ({ setUserId }) => {
         if (!em) em = email;
         if (!pw) pw = password;
 
+        if (!em || !pw) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Email and password are required',
+            });
+            return;
+        }
+
         try {
             if ((em || '').toString().endsWith('@telusinternational.com')) {
                 await signInWithEmailAndPassword(auth, em, pw);
+                console.log('success');
             } else {
                 await setPersistence(auth, browserSessionPersistence).then(() => {
                     return signInWithEmailAndPassword(auth, em, pw);
                 });
             }
         } catch (error) {
+            console.log(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Error Signing In',
-                footer: error
+                footer: error.message
             });
         }
     }
