@@ -16,7 +16,6 @@ const VideoTagging = () => {
 
     const [selectedVideo, setSelectedVideo] = useState(null);
 
-
     const [file, setFile] = useState(null);
     const [progress, setProgress] = useState(0);
     const [downloadURL, setDownloadURL] = useState("");
@@ -50,11 +49,16 @@ const VideoTagging = () => {
                 console.error("Upload failed:", error.message);
             },
             async () => {
-                // Handle successful upload
-                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                setDownloadURL(downloadURL);
-                alert("File uploaded successfully!");
-                console.log("File available at:", downloadURL);
+
+                // const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                // setDownloadURL(downloadURL);
+                // alert("File uploaded successfully!");
+                try {
+                    await realtimeDb.ref(`/videos/${userId}/${file.name}`).set({});
+                } catch (error) {
+                    console.log("Error uploading file to database:", error.message);
+                }
+
             }
         );
     };
@@ -141,26 +145,19 @@ const VideoTagging = () => {
             <div id="uploadForm">
 
                 <h2>Upload File and Review it</h2>
-                <div className="uploadControls">
-                    <input type="file" onChange={handleFileChange} />
-                    <button onClick={handleUpload} disabled={!file}>
-                        Upload File
-                    </button>
-                </div>
                 {progress > 0 && (
                     <div>
                         <p>Progress: {progress.toFixed(2)}%</p>
                         <progress value={progress} max="100"></progress>
                     </div>
                 )}
-                {downloadURL && (
-                    <div>
-                        <p>File uploaded! Access it here:</p>
-                        <a href={downloadURL} target="_blank" rel="noopener noreferrer">
-                            {downloadURL}
-                        </a>
-                    </div>
-                )}
+                <div className="uploadControls">
+                    <input type="file" onChange={handleFileChange} />
+                    <button onClick={handleUpload} disabled={!file}>
+                        Upload File
+                    </button>
+                </div>
+
             </div>
         </div>
     )

@@ -16,7 +16,8 @@ const RegistrationPage = () => {
 
     //might be cool to use this for admins so that when they create a moderator they can just copy paste it...
     const copyCredentialsToClipboard = (values) => {
-        const valuesString = JSON.stringify(values);
+        console.log('values');
+        const valuesString = `Email: ${values.email}\nPassword: ${values.password}`;
         navigator.clipboard.writeText(valuesString).then(() => {
             console.log('Credentials copied to clipboard');
         }).catch(err => {

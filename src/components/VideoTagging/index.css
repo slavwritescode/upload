@@ -24,11 +24,9 @@
 
 #videoTaggingPage #uploadForm .uploadControls button:enabled {
     padding: 1em 2em;
-    max-width: 80%;
-    border: none;
     background: rgba(75, 40, 109);
     color: #fff;
-    font-size: 2em;
+    font-size: 1em;
     font-weight: bold;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
     outline: none;
@@ -70,4 +68,10 @@
 
 #videoTaggingPage #videoContainer #videoInfoBlock {
     margin: 2em;
+}
+
+@media (max-width: 768px) {
+    #videoTaggingPage #uploadForm .uploadControls button:enabled {
+        font-size: 2em;
+    }
 }
