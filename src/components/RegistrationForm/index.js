@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form"
 import Swal from "sweetalert2";
 import BeatLoader from "react-spinners/ClipLoader";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateUserInfo } from "../../Redux/Features/userInfo";
 
 import './index.css';
-import { backend, realtimeDb } from '../../firebase/config';
+import { realtimeDb } from '../../firebase/config';
 
 //the error messages can come from constants....
 const RegistrationPage = () => {
@@ -31,12 +31,8 @@ const RegistrationPage = () => {
         await userRef.set({ name: name, role: role, userId: userId });
         userRef.on('value', (snapshot) => {
 
-            // temp['role'] = role;
-            // temp['userId'] = userId;
-
             temp['name'] = name;
-            dispatch(updateUserInfo(temp))
-            // navigate('/video-tagging');
+            dispatch(updateUserInfo(temp));
             setIsRegistering(false);
         });
 
@@ -46,7 +42,6 @@ const RegistrationPage = () => {
     const {
         register,
         handleSubmit,
-        watch,
         getValues,
         formState: { errors },
     } = useForm();
@@ -65,7 +60,7 @@ const RegistrationPage = () => {
                     "email": `${data.email}`,
                     "name": `${data.name}`,
                     "role": `${data.role}`,
-                    "password": "newpass1234"
+                    "password": `${data.password}`
                 })
             });
             const res = await rawRes.json();

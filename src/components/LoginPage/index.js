@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import { signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, getAuth, setPersistence, browserSessionPersistence } from 'firebase/auth';
+import { signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, getAuth, } from 'firebase/auth';
 import { auth } from '../../firebase/config';
 import md5 from 'md5';
-
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
 const LoginPage = ({ setUserId }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [hidden, setHidden] = useState(true);
+    const navigate = useNavigate();
 
-    const handleLogin = async (e, em, pw) => {
+    const handleLogin = async (e) => {
         if (e) e.preventDefault();
-        console.log(e, em, 'credentials');
-        if (!em) em = email;
-        if (!pw) pw = password;
+        console.log(e, email, password, 'credentials');
 
-        if (!em || !pw) {
+
+        if (!email || !password) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -25,16 +25,14 @@ const LoginPage = ({ setUserId }) => {
             });
             return;
         }
-
         try {
-            if ((em || '').toString().endsWith('@telusinternational.com')) {
-                await signInWithEmailAndPassword(auth, em, pw);
-                console.log('success');
-            } else {
-                await setPersistence(auth, browserSessionPersistence).then(() => {
-                    return signInWithEmailAndPassword(auth, em, pw);
-                });
-            }
+            // const videoIdRunningNumber = await realtimeDb.ref('/lastVideoId').transaction((currentValue) =>
+            await signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    const uid = user.uid;
+                    navigate('/video-tagging', { state: { uid } });
+                })
         } catch (error) {
             console.log(error);
             Swal.fire({
@@ -54,7 +52,7 @@ const LoginPage = ({ setUserId }) => {
             const p = urlParams.get('p');
             const c = urlParams.get('c');
             if (e && p && c) {
-                if (c == md5(e + 'p' + p)) handleLogin(false, e, p);
+                if (c === md5(e + 'p' + p)) handleLogin(false, e, p);
             } else {
                 setHidden(false);
             }
