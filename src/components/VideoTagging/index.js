@@ -1,37 +1,49 @@
 import { useEffect, useState } from "react";
-import { realtimeDb } from "../../firebase/config";
+import { realtimeDb, storage } from "../../firebase/config";
 import { useSelector } from "react-redux";
 import VideoPreview from "./VideoPreview";
 import { formatDateTime } from "../../shared";
 import { uploadBytesResumable, ref } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase/config";
+
 import './index.css';
 
 const VideoTagging = () => {
     const [allUploadedVideos, setAllUploadedVideos] = useState(null);
     const [error, setError] = useState();
     const userInfo = useSelector((state) => state.userInfo.value) || {};
-    const userId = userInfo['userId'];
+    //this just for mockup
+    const userId = 5;
+    // const userId = userInfo['userId'];
 
     const [selectedVideo, setSelectedVideo] = useState(null);
 
     const [file, setFile] = useState(null);
     const [progress, setProgress] = useState(0);
-    const [downloadURL, setDownloadURL] = useState("");
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     };
 
-    const handleUpload = () => {
+    const handleUpload = async () => {
         if (!file) {
             alert("Please select a file first!");
             return;
         }
 
-        // const storageRef = ref(storage, `uploads/${file.name}`); // Define the storage path
-        const storageRef = ref(storage, `videos/${file.name}`);
+        let videoId;
+        try {
+            const videoIdRunningNumber = await realtimeDb.ref('/lastVideoId').transaction((currentValue) => {
+                return currentValue === null ? 1 : currentValue + 1;
+            });
+            if (videoIdRunningNumber.committed) {
+                videoId = videoIdRunningNumber.snapshot.val();
+            }
+        } catch (error) {
+
+        }
+
+        const storageRef = ref(storage, `videos/${videoId}`);
         const uploadTask = uploadBytesResumable(storageRef, file, {
             contentType: file.type,
         });
@@ -54,7 +66,7 @@ const VideoTagging = () => {
                 // setDownloadURL(downloadURL);
                 // alert("File uploaded successfully!");
                 try {
-                    await realtimeDb.ref(`/videos/${userId}/${file.name}`).set({});
+                    await realtimeDb.ref(`/videos/${userId}/${videoId}`).set({ 'date': Date.now() });
                 } catch (error) {
                     console.log("Error uploading file to database:", error.message);
                 }
