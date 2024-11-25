@@ -7,6 +7,7 @@ import { uploadBytesResumable, ref } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
 
 import './index.css';
+import { set } from "date-fns";
 
 const VideoTagging = () => {
     const [allUploadedVideos, setAllUploadedVideos] = useState(null);
@@ -19,10 +20,16 @@ const VideoTagging = () => {
     const [selectedVideo, setSelectedVideo] = useState(null);
 
     const [file, setFile] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
     const [progress, setProgress] = useState(0);
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
+        if (file && file.type === 'video/quicktime') {
+            console.log('test')
+            const url = URL.createObjectURL(file);
+            setPreviewUrl(url);
+        }
     };
 
     const handleUpload = async () => {
@@ -43,7 +50,7 @@ const VideoTagging = () => {
 
         }
 
-        const storageRef = ref(storage, `videos/${videoId}`);
+        const storageRef = ref(storage, `videos/${videoId}.mov`);
         const uploadTask = uploadBytesResumable(storageRef, file, {
             contentType: file.type,
         });
@@ -66,7 +73,7 @@ const VideoTagging = () => {
                 // setDownloadURL(downloadURL);
                 // alert("File uploaded successfully!");
                 try {
-                    await realtimeDb.ref(`/videos/${userId}/${videoId}`).set({ 'date': Date.now() });
+                    await realtimeDb.ref(`/videos/${userId}/${videoId}`).set({ 'date': formatDateTime(Date.now()), 'labels': {} });
                 } catch (error) {
                     console.log("Error uploading file to database:", error.message);
                 }
@@ -157,12 +164,27 @@ const VideoTagging = () => {
             <div id="uploadForm">
 
                 <h2>Upload File and Review it</h2>
+
+                {previewUrl && (
+                    <div>
+                        <video
+                            width={'100%'}
+                            controls
+                            src={previewUrl}
+                            style={{ display: 'block', margin: '3em 0' }}
+                        >
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                )}
+
                 {progress > 0 && (
                     <div>
                         <p>Progress: {progress.toFixed(2)}%</p>
                         <progress value={progress} max="100"></progress>
                     </div>
                 )}
+
                 <div className="uploadControls">
                     <input type="file" onChange={handleFileChange} />
                     <button onClick={handleUpload} disabled={!file}>

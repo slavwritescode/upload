@@ -25,6 +25,7 @@
 #videoTaggingPage #uploadForm .uploadControls button:enabled {
     padding: 1em 2em;
     background: rgba(75, 40, 109);
+    max-width: 50%;
     color: #fff;
     font-size: 1em;
     font-weight: bold;
@@ -73,5 +74,6 @@
 @media (max-width: 768px) {
     #videoTaggingPage #uploadForm .uploadControls button:enabled {
         font-size: 2em;
+        max-width: 90%;
     }
 }
