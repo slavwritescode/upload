@@ -13,6 +13,7 @@ const LoginPage = ({ setUserId }) => {
 
     const handleLogin = async (e, em, pw) => {
         if (e) e.preventDefault();
+        console.log(e, em, 'credentials');
         if (!em) em = email;
         if (!pw) pw = password;
 
@@ -93,7 +94,7 @@ const LoginPage = ({ setUserId }) => {
 
     return <div id="loginPage">
         {!hidden && <div id="loginContainer">
-            <h2>Project Aspen</h2>
+            <h2>Project Tokoro</h2>
             <form onSubmit={(e) => handleLogin(e)}>
                 <input
                     id="email"
