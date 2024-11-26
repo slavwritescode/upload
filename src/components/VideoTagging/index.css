@@ -80,7 +80,9 @@
     list-style: none;
 }
 
-#videoTaggingPage #videoContainer 
+#videoTaggingPage #videoContainer {
+    min-width: 200px;
+}
 
 #videoTaggingPage #videoContainer #videoInfoBlock {
     margin: 2em;

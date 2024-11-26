@@ -105,7 +105,7 @@ const VideoTagging = () => {
             }
         }
         getAllVideos();
-    }, []);
+    }, [userId]);
 
     useEffect(() => {
 

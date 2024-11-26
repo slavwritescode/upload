@@ -16,7 +16,7 @@ function App() {
   const [showDeliveryTargetsTable, setShowDeliveryTargetsTable] = useState(false);
 
   const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.userInfo.value || {});
+  const userInfo = useSelector((state) => state.userInfo.value) || {};
   const role = userInfo['role'];
 
   function getElement(path) {

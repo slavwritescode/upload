@@ -14,7 +14,7 @@ import Constants from '../Constants';
 import appInfo from '../../../package.json';
 
 const Navbar = ({ setUserId, showStats, setShowStats, showLog, setShowLog, showDeliveryTargetsTable, setShowDeliveryTargetsTable }) => {
-    const userInfo = useSelector((state) => state.userInfo.value || {});
+    const userInfo = useSelector((state) => state.userInfo.value) || {};
     const userId = userInfo['userId'];
     const name = userInfo['name'];
     const userRole = userInfo['role'];

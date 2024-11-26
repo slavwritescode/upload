@@ -14,6 +14,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm();
 
@@ -25,6 +26,12 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
 
         getSingleFile();
     }, [])
+
+    const handleFieldChange = (e) => {
+        const { name, value } = e.target;
+        console.log(name, value, 'handleFieldChange');
+        setValue(name, value);
+    }
 
     const review = async (data, route) => {
         console.log('route is', route);
@@ -42,7 +49,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
             angle,
             clothing: clothingSelections,
         };
-
+        //110001
         const path = `videos/${userId}/${route}/labels`;
 
         try {
@@ -59,12 +66,14 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
         <video controls width="500" src={url} />
         <div className="controls">
             {/* <button id="backButton" onClick={() => setIsClicked(value => !value)}>Go back</button> */}
-            <form onChange={handleSubmit((data) => review(data, keyIdentifier))} autoComplete="off">
+            <form autoComplete="off">
                 <select
                     {...register("scenarios", {
                         required: true,
                         message: "Select a relevant scenario"
                     })}
+
+                    onChange={handleFieldChange}
                 >
                     {Object.values(Constants['scenarios'])
                         .sort((a, b) => a.localeCompare(b))
@@ -75,6 +84,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                         required: true,
                         message: "Select a height"
                     })}
+                    onChange={handleSubmit((data) => review(data, keyIdentifier))}
                 >
                     {Object.values(Constants['deviceHeight'])
                         .sort((a, b) => a.localeCompare(b))
@@ -85,6 +95,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                         required: true,
                         message: "Select a type of lighting"
                     })}
+                    onChange={handleSubmit((data) => review(data, keyIdentifier))}
                 >
                     {Object.values(Constants['lighting'])
                         .sort((a, b) => a.localeCompare(b))
@@ -95,6 +106,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                         required: true,
                         message: "Select an approach angle"
                     })}
+                    onChange={handleSubmit((data) => review(data, keyIdentifier))}
                 >
                     {Object.values(Constants['approachAngle'])
                         .sort((a, b) => a.localeCompare(b))
@@ -106,7 +118,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                     {Object.values(Constants['clothing'])
                         .sort((a, b) => a.localeCompare(b))
                         .map(clothingItem => <div key={clothingItem}>
-                            <input type="checkbox" id={clothingItem} value={clothingItem} />
+                            <input type="checkbox" id={clothingItem} value={clothingItem} onChange={handleSubmit((data) => review(data, keyIdentifier))} />
                             <label htmlFor={clothingItem}>{clothingItem}</label>
                         </div>)}
                 </fieldset>
@@ -115,7 +127,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                     {Object.values(Constants['accessories'])
                         .sort((a, b) => a.localeCompare(b))
                         .map(accessoryItem => <div key={accessoryItem}>
-                            <input type="checkbox" id={accessoryItem} value={accessoryItem} />
+                            <input type="checkbox" id={accessoryItem} value={accessoryItem} onChange={handleSubmit((data) => review(data, keyIdentifier))} />
                             <label htmlFor={accessoryItem}>{accessoryItem}</label>
                         </div>)}
                 </fieldset>
