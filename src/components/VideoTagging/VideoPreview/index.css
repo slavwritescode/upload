@@ -1,13 +1,9 @@
 #videoPreview {
     display:flex;
-    /* justify-content: center;
-    align-items: center; */
-    margin: 1em 0;
-}
-
-#videoPreview .labelContainer {
-    display: flex;
     flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    margin: 1em 0;
 }
 
 #videoPreview .controls fieldset {
@@ -107,4 +103,10 @@
 
 #videoButtonContainer button {
     margin: 2em;
+}
+
+@media (max-width: 768px) {
+  #videoPreview {
+    justify-content: center;
+  }
 }

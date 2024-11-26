@@ -91,34 +91,9 @@ const VideoTagging = () => {
         setSelectedVideo(video);
     };
 
-    // useEffect(() => {
-    //     const listAllVidoes = async () => {
-    //         ('running...')
-    //         let videosRef = realtimeDb.ref(`/videos/${userId}`);
-    //         //it is going to be equal to whatever the id
-
-    //         try {
-    //             // mainQuery = mainQuery.orderByChild('moderator').equalTo(userId);
-    //             // mainQuery.on('value', (data) => {
-    //             //   const videoData = data.val() || null;
-    //             //   setAllUploadedVideos(videoData);
-    //             // })
-    //             videosRef.on('value', data => {
-    //                 const videoData = data.val() || null;
-    //                 setAllUploadedVideos(videoData);
-    //             });
-    //         } catch (error) {
-    //             setError(error.message);
-    //         }
-    //         // const videos = await realtimeDb.ref('/')
-    //     }
-    //     if (userId) {
-    //         listAllVidoes();
-    //     }
-    // }, [userId])
-
     useEffect(() => {
         const getAllVideos = async () => {
+            console.log('run');
             let videosRef = realtimeDb.ref(`/videos/${userId}`);
             try {
                 videosRef.on('value', data => {
@@ -159,7 +134,7 @@ const VideoTagging = () => {
         <div id="videoTaggingPage">
             {/**have a list for all previous uploaded videos */}
             <div id="videoContainer">
-                <h3>Recently uploaded videos</h3>
+                <h3>Recently uploaded</h3>
                 {error
                     ? <p>An error occured when displaying the videos you have recently uploaded</p>
                     : <ul className="allVideosList">
@@ -175,38 +150,25 @@ const VideoTagging = () => {
                                 console.log("/videos/" + singleVideo[0] + '.mov', 'is the url');
                                 return <li key={keyIdentifier} onClick={() => handleVideoClick({ keyIdentifier, data })}>
                                     <span>Date:</span> {formatDateTime(data.date)}
-                                    <VideoPreview
-                                        videoUrl={"/videos/" + singleVideo[0] + '.mov'}
-                                        keyIdentifier={keyIdentifier}
-                                    />
+
                                 </li>
                             }) : <p id="uploadWarning">Nothing uploaded recently.</p>}
 
                     </ul>}
             </div>
+
             {selectedVideo && (
-                <div id="videoContainerDetailed">
-                    <h3>Details for Selected Video</h3>
-                    <div>
-                        <strong>Date:</strong> {formatDateTime(selectedVideo.data.date)}
-                    </div>
-                    <div>
-                        <strong>Moderator:</strong> {uid}
-                    </div>
-                    <div>
-                        <strong>Video URL:</strong>
-                        <a href={`/videos/${selectedVideo.keyIdentifier}.mov`} target="_blank" rel="noopener noreferrer">
-                            View Video
-                        </a>
-                    </div>
-                </div>
+                <VideoPreview
+                    videoUrl={"/videos/" + selectedVideo.keyIdentifier + '.mov'}
+                    keyIdentifier={selectedVideo.keyIdentifier} />
             )}
+
             <div id="taggingControls">
                 {/* <VideoPreview videoUrl={ } keyIdentifier={ } /> */}
             </div>
             <div id="uploadForm">
 
-                <h2>Upload and Review File</h2>
+                <h2>Upload File</h2>
 
                 {previewUrl && (
                     <div>
@@ -222,7 +184,7 @@ const VideoTagging = () => {
                 )}
 
                 {progress > 0 && (
-                    <div>
+                    <div className="progressBar">
                         <p>Progress: {progress.toFixed(2)}%</p>
                         <progress value={progress} max="100"></progress>
                     </div>

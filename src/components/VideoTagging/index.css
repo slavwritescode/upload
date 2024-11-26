@@ -3,7 +3,7 @@
     height: 100vh;
     padding: 0 2em;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background: #c4cfedb9;
 }
 
@@ -30,7 +30,8 @@
 }
 
 #videoTaggingPage #uploadForm .uploadControls button:enabled {
-    padding: 1em 2em;
+    
+    padding: .1em 1em;
     background: rgba(75, 40, 109);
     max-width: 50%;
     color: #fff;
@@ -79,12 +80,19 @@
     list-style: none;
 }
 
+#videoTaggingPage #videoContainer 
+
 #videoTaggingPage #videoContainer #videoInfoBlock {
     margin: 2em;
 }
 
+#videoTaggingPage #videoContainerDetailed {
+    padding: 2em;
+}
+
 @media (max-width: 768px) {
     #videoTaggingPage {
+        flex-direction: column;
         font-size: 3em;
         min-width: 430px;
     } 
