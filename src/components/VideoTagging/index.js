@@ -9,6 +9,7 @@ import { updateUserInfo } from "../../Redux/Features/userInfo";
 
 import './index.css';
 import { set } from "date-fns";
+import { compileSchema } from "ajv/dist/compile";
 
 const VideoTagging = () => {
     const location = useLocation();
@@ -118,7 +119,7 @@ const VideoTagging = () => {
 
     useEffect(() => {
         const getAllVideos = async () => {
-            let videosRef = realtimeDb.ref(`/videos/${uid}`);
+            let videosRef = realtimeDb.ref(`/videos/${userId}`);
             try {
                 videosRef.on('value', data => {
                     const videoData = data.val() || null;
@@ -140,8 +141,9 @@ const VideoTagging = () => {
                 const userSnapshot = await realtimeDb.ref(`/users/${uid}`).once('value');
                 const userData = userSnapshot.val();
                 let temp = {};
-                temp['userId'] = uid;
-                console.log(uid, userData, 'before the if')
+                console.log(uid, userData, 'before the if');
+                temp['userId'] = userData.userId;
+
                 if (userData) {
                     dispatch((updateUserInfo(temp)));
                 }
@@ -167,12 +169,12 @@ const VideoTagging = () => {
                                 return b[1].date - a[1].date
                             })
                             .map(singleVideo => {
-                                console.log(singleVideo, 'is single video')
+
                                 const keyIdentifier = singleVideo[0];
                                 const data = singleVideo[1];
                                 console.log("/videos/" + singleVideo[0] + '.mov', 'is the url');
                                 return <li key={keyIdentifier} onClick={() => handleVideoClick({ keyIdentifier, data })}>
-                                    <span>Date:</span> {formatDateTime(data.date)} <span>Moderator:</span> {uid}
+                                    <span>Date:</span> {formatDateTime(data.date)}
                                     <VideoPreview
                                         videoUrl={"/videos/" + singleVideo[0] + '.mov'}
                                         keyIdentifier={keyIdentifier}

@@ -25,6 +25,10 @@
     gap: 1em;
 }
 
+#videoTaggingPage #uploadForm h2 {
+    margin: 1em;
+}
+
 #videoTaggingPage #uploadForm .uploadControls button:enabled {
     padding: 1em 2em;
     background: rgba(75, 40, 109);
@@ -39,10 +43,10 @@
 
 #videoTaggingPage #uploadForm .uploadControls button:disabled {
     padding: .1em 1em;
-    border: none;
     background: gray;
+    max-width: 50%;
     color: darkgray;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
     outline: none;
@@ -81,7 +85,7 @@
 
 @media (max-width: 768px) {
     #videoTaggingPage {
-        font-size: 2em;
+        font-size: 3em;
         min-width: 430px;
     } 
 
@@ -90,7 +94,7 @@
         min-width: 90%;
     }
 
-    #videoTaggingPage #uploadForm .uploadControls button:enabled {
+    #videoTaggingPage #uploadForm .uploadControls button:enabled, button:disabled {
         
         max-width: 90%;
     }
