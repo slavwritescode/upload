@@ -3,10 +3,13 @@
     height: 100vh;
     padding: 0 2em;
     display: flex;
-    /* flex-direction: column; */
-    align-items: flex-start;
+    flex-direction: column;
     background: #c4cfedb9;
-    
+}
+
+#videoTaggingPage #uploadWarning {
+    color: var(--warning-color);
+    font-weight: bold;
 }
 
 #videoTaggingPage #uploadForm {
@@ -55,7 +58,12 @@
     font-weight: bold;
 }
 
+#videoTaggingPage #videoContainer h3 {
+    margin: 1em 0;
+}
+
 #videoTaggingPage #videoContainer {
+    text-align: left;
     /* width: 25em; */
     background: transparent;
     padding: 2em;
@@ -72,8 +80,18 @@
 }
 
 @media (max-width: 768px) {
-    #videoTaggingPage #uploadForm .uploadControls button:enabled {
+    #videoTaggingPage {
         font-size: 2em;
+        min-width: 430px;
+    } 
+
+    #videoTaggingPage #videoContainer {
+        text-align: center;
+        min-width: 90%;
+    }
+
+    #videoTaggingPage #uploadForm .uploadControls button:enabled {
+        
         max-width: 90%;
     }
 }

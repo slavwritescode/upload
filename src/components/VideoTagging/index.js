@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { realtimeDb, storage } from "../../firebase/config";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import VideoPreview from "./VideoPreview";
 import { formatDateTime } from "../../shared";
 import { uploadBytesResumable, ref } from "firebase/storage";
-import { getDownloadURL } from "firebase/storage";
+import { updateUserInfo } from "../../Redux/Features/userInfo";
 
 import './index.css';
 import { set } from "date-fns";
@@ -13,10 +13,12 @@ import { set } from "date-fns";
 const VideoTagging = () => {
     const location = useLocation();
     const { uid } = location.state || {};
+
     const [allUploadedVideos, setAllUploadedVideos] = useState(null);
     const [error, setError] = useState();
-    //const userInfo = useSelector((state) => state.userInfo.value) || {};
-    //const userId = userInfo['userId'];
+    const dispatch = useDispatch();
+    const userInfo = useSelector((state) => state.userInfo.value) || {};
+    const userId = userInfo['userId'];
 
     const [selectedVideo, setSelectedVideo] = useState(null);
 
@@ -74,7 +76,7 @@ const VideoTagging = () => {
                 // setDownloadURL(downloadURL);
                 // alert("File uploaded successfully!");
                 try {
-                    await realtimeDb.ref(`/videos/${uid}/${videoId}`).set({ 'date': formatDateTime(Date.now()), 'labels': {} });
+                    await realtimeDb.ref(`/videos/${userId}/${videoId}`).set({ 'date': formatDateTime(Date.now()), 'labels': {} });
                 } catch (error) {
                     console.log("Error uploading file to database:", error.message);
                 }
@@ -129,11 +131,33 @@ const VideoTagging = () => {
         getAllVideos();
     }, []);
 
+    useEffect(() => {
+
+
+        const fetchUserId = async () => {
+            try {
+
+                const userSnapshot = await realtimeDb.ref(`/users/${uid}`).once('value');
+                const userData = userSnapshot.val();
+                let temp = {};
+                temp['userId'] = uid;
+                console.log(uid, userData, 'before the if')
+                if (userData) {
+                    dispatch((updateUserInfo(temp)));
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error.message);
+            }
+        };
+
+        fetchUserId();
+    }, [])
+
     return (
         <div id="videoTaggingPage">
             {/**have a list for all previous uploaded videos */}
             <div id="videoContainer">
-                <h3>All recently uploaded videos</h3>
+                <h3>Recently uploaded videos</h3>
                 {error
                     ? <p>An error occured when displaying the videos you have recently uploaded</p>
                     : <ul className="allVideosList">
@@ -154,7 +178,7 @@ const VideoTagging = () => {
                                         keyIdentifier={keyIdentifier}
                                     />
                                 </li>
-                            }) : <p>{"It appears you haven't uploaded recently. "}</p>}
+                            }) : <p id="uploadWarning">Nothing uploaded recently.</p>}
 
                     </ul>}
             </div>
@@ -180,7 +204,7 @@ const VideoTagging = () => {
             </div>
             <div id="uploadForm">
 
-                <h2>Upload File and Review it</h2>
+                <h2>Upload and Review File</h2>
 
                 {previewUrl && (
                     <div>

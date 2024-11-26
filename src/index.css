@@ -14,6 +14,7 @@
   --telus-color-3: rgb(85, 255, 0);
   --link-text-1: #fff;
   --link-hover-text-1: #ffffffda;
+  --warning-color: rgb(255, 0, 0);
 
   /* ====== Fontsize ====== */
   --font-size: 14px;
