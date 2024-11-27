@@ -44,7 +44,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
             }
         }
 
-        if (selectedClothing.length > 0) {
+        if (selectedClothing.length > 0 || selectedAccessory.length > 0) {
             updateChecboxes();
         }
     }, [selectedClothing, selectedAccessory]);
