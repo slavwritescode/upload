@@ -10,7 +10,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     const userInfo = useSelector((state) => state.userInfo.value) || {};
     const userId = userInfo['userId'];
     const [url, setUrl] = useState(null);
-    const [isClicked, setIsClicked] = useState(false);
+
     const {
         register,
         watch,
@@ -58,10 +58,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     }
 
     const review = async (data, name) => {
-        // console.log('name is', name);
-        // console.log('userId is', userId);
-        // console.log('data is', data);
-        // console.log('keyIdentifier is', keyIdentifier);
+
         const path = `videos/${userId}/${keyIdentifier}/labels`;
         try {
             await realtimeDb.ref(path).update({ [name]: data });
@@ -159,7 +156,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                             <label htmlFor={accessoryItem}>{accessoryItem}</label>
                         </div>)}
                 </fieldset>
-                {/**no button needed */}
+
             </form>
         </div>
     </div>)
