@@ -65,7 +65,7 @@ const VideoTagging = () => {
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 setProgress(progress);
-                console.log(`Upload is ${progress}% done`);
+                // console.log(`Upload is ${progress}% done`);
             },
             (error) => {
                 // Handle upload errors
@@ -77,7 +77,7 @@ const VideoTagging = () => {
                 // setDownloadURL(downloadURL);
                 // alert("File uploaded successfully!");
                 try {
-                    await realtimeDb.ref(`/videos/${userId}/${videoId}`).set({ 'date': formatDateTime(Date.now()), 'labels': {} });
+                    await realtimeDb.ref(`/videos/${userId}/${videoId}`).set({ 'date': Date.now(), 'labels': {} });
                 } catch (error) {
                     console.log("Error uploading file to database:", error.message);
                 }
