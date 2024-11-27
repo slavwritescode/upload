@@ -13,10 +13,12 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     const [isClicked, setIsClicked] = useState(false);
     const {
         register,
-        handleSubmit,
+        watch,
         setValue,
         formState: { errors },
     } = useForm();
+    const selectedClothing = watch('clothing', []);
+    const selectedAccessory = watch('accessory', []);
 
     useEffect(() => {
         const getSingleFile = async () => {
@@ -27,39 +29,46 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
         getSingleFile();
     }, [])
 
+    useEffect(() => {
+
+        const updateChecboxes = async () => {
+            const path = `videos/${userId}/${keyIdentifier}/labels`;
+            try {
+                await realtimeDb.ref(path).update({
+                    clothing: selectedClothing,
+                    accessories: selectedAccessory
+                });
+                console.log("Labels updated successfully!");
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+        if (selectedClothing.length > 0) {
+            updateChecboxes();
+        }
+    }, [selectedClothing, selectedAccessory]);
+
     const handleFieldChange = (e) => {
+        console.log('run...')
         const { name, value } = e.target;
         console.log(name, value, 'handleFieldChange');
         setValue(name, value);
+        review(value, name);
     }
 
-    const review = async (data, route) => {
-        console.log('route is', route);
-        console.log('userId is', userId)
-
-        const { scenarios, deviceHeight, lighting, angle } = data;
-        const clothingSelections = Array.from(
-            document.querySelectorAll('input[type="checkbox"]:checked')
-        ).map((input) => input.value);
-
-        const labels = {
-            scenarios,
-            deviceHeight,
-            lighting,
-            angle,
-            clothing: clothingSelections,
-        };
-        //110001
-        const path = `videos/${userId}/${route}/labels`;
-
+    const review = async (data, name) => {
+        // console.log('name is', name);
+        // console.log('userId is', userId);
+        // console.log('data is', data);
+        // console.log('keyIdentifier is', keyIdentifier);
+        const path = `videos/${userId}/${keyIdentifier}/labels`;
         try {
-            // Send the update request
-            await realtimeDb.ref(path).set(labels);
+            await realtimeDb.ref(path).update({ [name]: data });
             console.log("Labels updated successfully!");
         } catch (error) {
-            console.error("Error updating labels:", error);
+            console.log(error.message);
         }
-
     }
 
     return (<div id="videoPreview">
@@ -68,13 +77,14 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
             {/* <button id="backButton" onClick={() => setIsClicked(value => !value)}>Go back</button> */}
             <form autoComplete="off">
                 <select
-                    {...register("scenarios", {
+                    {...register("scenario", {
                         required: true,
                         message: "Select a relevant scenario"
                     })}
 
                     onChange={handleFieldChange}
                 >
+                    <option value="">Select scenario</option>
                     {Object.values(Constants['scenarios'])
                         .sort((a, b) => a.localeCompare(b))
                         .map((scenarioItem) => <option key={scenarioItem}>{scenarioItem}</option>)}
@@ -84,8 +94,9 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                         required: true,
                         message: "Select a height"
                     })}
-                    onChange={handleSubmit((data) => review(data, keyIdentifier))}
+                    onChange={handleFieldChange}
                 >
+                    <option value="">Select device height</option>
                     {Object.values(Constants['deviceHeight'])
                         .sort((a, b) => a.localeCompare(b))
                         .map((deviceHeightItem) => <option key={deviceHeightItem}>{deviceHeightItem}</option>)}
@@ -95,8 +106,9 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                         required: true,
                         message: "Select a type of lighting"
                     })}
-                    onChange={handleSubmit((data) => review(data, keyIdentifier))}
+                    onChange={handleFieldChange}
                 >
+                    <option value="">Select lighting</option>
                     {Object.values(Constants['lighting'])
                         .sort((a, b) => a.localeCompare(b))
                         .map((lightingItem) => <option key={lightingItem}>{lightingItem}</option>)}
@@ -106,8 +118,9 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                         required: true,
                         message: "Select an approach angle"
                     })}
-                    onChange={handleSubmit((data) => review(data, keyIdentifier))}
+                    onChange={handleFieldChange}
                 >
+                    <option value="">Select angle</option>
                     {Object.values(Constants['approachAngle'])
                         .sort((a, b) => a.localeCompare(b))
                         .map((approachAngleItem) => <option key={approachAngleItem}>{approachAngleItem}</option>)}
@@ -118,7 +131,15 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                     {Object.values(Constants['clothing'])
                         .sort((a, b) => a.localeCompare(b))
                         .map(clothingItem => <div key={clothingItem}>
-                            <input type="checkbox" id={clothingItem} value={clothingItem} onChange={handleSubmit((data) => review(data, keyIdentifier))} />
+                            <input
+                                type="checkbox"
+                                id={clothingItem}
+                                value={clothingItem}
+                                onChange={handleFieldChange}
+                                {...register('clothing', {
+                                    required: true
+                                })} />
+
                             <label htmlFor={clothingItem}>{clothingItem}</label>
                         </div>)}
                 </fieldset>
@@ -127,7 +148,14 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                     {Object.values(Constants['accessories'])
                         .sort((a, b) => a.localeCompare(b))
                         .map(accessoryItem => <div key={accessoryItem}>
-                            <input type="checkbox" id={accessoryItem} value={accessoryItem} onChange={handleSubmit((data) => review(data, keyIdentifier))} />
+                            <input
+                                type="checkbox"
+                                id={accessoryItem}
+                                value={accessoryItem}
+                                onChange={handleFieldChange}
+                                {...register('accessory', {
+                                    required: true
+                                })} />
                             <label htmlFor={accessoryItem}>{accessoryItem}</label>
                         </div>)}
                 </fieldset>

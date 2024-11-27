@@ -68,6 +68,18 @@
     margin: 1em 0;
 }
 
+#videoTaggingPage #videoContainer button {
+    padding: .1em 1em;
+    background: rgba(75, 40, 109);
+
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+    cursor: pointer;
+}
+
 #videoTaggingPage #videoContainer {
     text-align: left;
     /* width: 25em; */

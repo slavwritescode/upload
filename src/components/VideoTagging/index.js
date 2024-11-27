@@ -148,10 +148,10 @@ const VideoTagging = () => {
                                 const keyIdentifier = singleVideo[0];
                                 const data = singleVideo[1];
                                 console.log("/videos/" + singleVideo[0] + '.mov', 'is the url');
-                                return <li key={keyIdentifier} onClick={() => handleVideoClick({ keyIdentifier, data })}>
-                                    <span>Date:</span> {formatDateTime(data.date)}
+                                return <button key={keyIdentifier} onClick={() => handleVideoClick({ keyIdentifier, data })}>
+                                    {formatDateTime(data.date)}
 
-                                </li>
+                                </button>
                             }) : <p id="uploadWarning">Nothing uploaded recently.</p>}
 
                     </ul>}
