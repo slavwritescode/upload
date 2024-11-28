@@ -10,7 +10,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     const userInfo = useSelector((state) => state.userInfo.value) || {};
     const userId = userInfo['userId'];
     const [url, setUrl] = useState(null);
-
+    console.log(videoUrl, keyIdentifier, 'inside preview');
     const {
         register,
         watch,
@@ -27,7 +27,12 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
         }
 
         getSingleFile();
-    }, [])
+
+        return () => {
+            setUrl(null);
+        }
+
+    }, [videoUrl])
 
     useEffect(() => {
 
@@ -70,6 +75,8 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
 
     return (<div id="videoPreview">
         <video controls width="500" src={url} />
+        <p>{videoUrl}</p>
+        <p>{keyIdentifier}</p>
         <div className="controls">
             {/* <button id="backButton" onClick={() => setIsClicked(value => !value)}>Go back</button> */}
             <form autoComplete="off">

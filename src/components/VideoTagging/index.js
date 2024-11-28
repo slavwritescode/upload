@@ -87,8 +87,9 @@ const VideoTagging = () => {
     };
 
     // Handler for when a video item is clicked
-    const handleVideoClick = (video) => {
-        setSelectedVideo(video);
+    const handleVideoClick = (keyIdentifier, data) => {
+        console.log(keyIdentifier, data);
+        setSelectedVideo(keyIdentifier);
     };
 
     useEffect(() => {
@@ -130,6 +131,10 @@ const VideoTagging = () => {
         fetchUserId();
     }, [])
 
+    useEffect(() => {
+        console.log('running selected video', selectedVideo)
+    }, [selectedVideo])
+
     return (
         <div id="videoTaggingPage">
             {/**have a list for all previous uploaded videos */}
@@ -144,23 +149,25 @@ const VideoTagging = () => {
                                 return b[1].date - a[1].date
                             })
                             .map(singleVideo => {
-
+                                //console.log(singleVideo, 'is the single video...');
                                 const keyIdentifier = singleVideo[0];
                                 const data = singleVideo[1];
-                                console.log("/videos/" + singleVideo[0] + '.mov', 'is the url');
-                                return <button key={keyIdentifier} onClick={() => handleVideoClick({ keyIdentifier, data })}>
+
+                                //console.log("/videos/" + singleVideo[0] + '.mov', 'is the url');
+                                // console.log(keyIdentifier, 'is the unique key');
+                                return <li key={keyIdentifier}><button onClick={() => handleVideoClick(keyIdentifier, data)}>
                                     {formatDateTime(data.date)}
 
-                                </button>
+                                </button></li>
                             }) : <p id="uploadWarning">Nothing uploaded recently.</p>}
 
                     </ul>}
             </div>
-
+            {/* {console.log(JSON.stringify(selectedVideo), 'this is selected video')} */}
             {selectedVideo && (
                 <VideoPreview
-                    videoUrl={"/videos/" + selectedVideo.keyIdentifier + '.mov'}
-                    keyIdentifier={selectedVideo.keyIdentifier} />
+                    videoUrl={"/videos/" + selectedVideo + '.mov'}
+                    keyIdentifier={selectedVideo} />
             )}
 
             <div id="taggingControls">
