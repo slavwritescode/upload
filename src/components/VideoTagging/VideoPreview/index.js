@@ -10,15 +10,6 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     const userInfo = useSelector((state) => state.userInfo.value) || {};
     const userId = userInfo['userId'];
     const [url, setUrl] = useState(null);
-    console.log(videoUrl, keyIdentifier, 'inside preview');
-    // const {
-    //     register,
-    //     watch,
-    //     setValue,
-    //     formState: { errors },
-    // } = useForm();
-    // const selectedClothing = watch('clothing', []);
-    // const selectedAccessory = watch('accessory', []);
 
     const reviewField = async (data, name) => {
 
@@ -45,34 +36,6 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
 
     }, [videoUrl])
 
-    // useEffect(() => {
-
-    //     const updateChecboxes = async () => {
-    //         const path = `videos/${userId}/${keyIdentifier}/labels`;
-    //         try {
-    //             await realtimeDb.ref(path).update({
-    //                 clothing: selectedClothing,
-    //                 accessories: selectedAccessory
-    //             });
-    //             console.log("Labels updated successfully!");
-    //         } catch (error) {
-    //             console.log(error.message);
-    //         }
-    //     }
-
-    //     if (selectedClothing.length > 0 || selectedAccessory.length > 0) {
-    //         updateChecboxes();
-    //     }
-    // }, [selectedClothing, selectedAccessory]);
-
-    // const handleFieldChange = (e) => {
-    //     console.log('run...')
-    //     const { name, value } = e.target;
-    //     console.log(name, value, 'handleFieldChange');
-    //     setValue(name, value);
-    //     review(value, name);
-    // }
-
     function handleChange(e) {
         e.preventDefault();
         const { name, value } = e.target;
@@ -83,17 +46,20 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     return (<div id="videoPreview">
         <video controls width="500" src={url} />
         <div className="controls">
-            {/* <button id="backButton" onClick={() => setIsClicked(value => !value)}>Go back</button> */}
-            <form autoComplete="off" method="post">
-                <label>Select scenario
-                    <select name="scenario" defaultValue="selectInitial" onChange={handleChange}>
-                        <option value="selectInitial">Select a scenario</option>
-                        {Object.values(Constants['scenarios'])
-                            .sort((a, b) => a.localeCompare(b))
-                            .map((scenarioItem) => <option key={scenarioItem} value={scenarioItem}>{scenarioItem}</option>)}
-                    </select>
-                </label>
+            <form autoComplete="off">
+                <select name="scenario" defaultValue="initialScenario" onChange={handleChange}>
+                    <option value="selectInitial">Select a scenario</option>
+                    {Object.values(Constants['scenarios'])
+                        .sort((a, b) => a.localeCompare(b))
+                        .map((scenarioItem) => <option key={scenarioItem} value={scenarioItem}>{scenarioItem}</option>)}
+                </select>
 
+                <select name="deviceHeight" defaultValue="initialHeight" onChange={handleChange}>
+                    <option value="selectInitial">Select a height</option>
+                    {Object.values(Constants['deviceHeight'])
+                        .sort((a, b) => a.localeCompare(b))
+                        .map((deviceHeightItem) => <option key={deviceHeightItem} value={deviceHeightItem}>{deviceHeightItem}</option>)}
+                </select>
                 {/* <select
                     {...register("deviceHeight", {
                         required: true,

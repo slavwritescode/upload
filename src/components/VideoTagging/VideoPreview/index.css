@@ -45,25 +45,18 @@
   border-color: rgba(75, 40, 109);
 }
 
-#videoPreview .controls label {
-  font-size: 1rem; 
-  color: #555; 
-  cursor: pointer; 
-}
-
 #videoPreview .controls input[type="checkbox"]:hover {
   border-color: #45a049; 
 }
 
-#videoPreview select {
+#videoPreview .controls select {
     border: 0px;
-    padding: .2em .5em;
     margin: 1em;
     font-size: 1.1em;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
     color: #1d3062;
     outline: none;
-    text-align: center;
+    text-align: center; 
 }
 
 #videoPreview .controls {
