@@ -73,20 +73,10 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     //     review(value, name);
     // }
 
-    function handleSubmit(e) {
-
-        e.preventDefault();
-
-        const form = e.target;
-        const formData = new FormData(form);
-        console.log(formData, 'is the form data');
-        //reviewField();
-    }
-
     function handleChange(e) {
         e.preventDefault();
         const { name, value } = e.target;
-        console.log(name, value);
+        reviewField(value, name);
 
     }
 
@@ -96,7 +86,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
             {/* <button id="backButton" onClick={() => setIsClicked(value => !value)}>Go back</button> */}
             <form autoComplete="off" method="post">
                 <label>Select scenario
-                    <select name="selectedScenarios" defaultValue="selectInitial" onChange={handleChange}>
+                    <select name="scenario" defaultValue="selectInitial" onChange={handleChange}>
                         <option value="selectInitial">Select a scenario</option>
                         {Object.values(Constants['scenarios'])
                             .sort((a, b) => a.localeCompare(b))

@@ -132,7 +132,7 @@ const VideoTagging = () => {
             {/**have a list for all previous uploaded videos */}
             <div id="videosList">
                 <h3>Recently uploaded</h3>
-                {error
+                {error || allUploadedVideos == null
                     ? <p>An error occured when displaying the videos you have recently uploaded</p>
                     : <ul className="allVideosList">
                         {allUploadedVideos ? Object.entries(allUploadedVideos)
@@ -141,6 +141,7 @@ const VideoTagging = () => {
                                 return b[1].date - a[1].date
                             })
                             .map(singleVideo => {
+                                console.log(singleVideo, 'is single video')
                                 const keyIdentifier = singleVideo[0];
                                 const data = singleVideo[1];
 
