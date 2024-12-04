@@ -11,14 +11,25 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     const userId = userInfo['userId'];
     const [url, setUrl] = useState(null);
     console.log(videoUrl, keyIdentifier, 'inside preview');
-    const {
-        register,
-        watch,
-        setValue,
-        formState: { errors },
-    } = useForm();
-    const selectedClothing = watch('clothing', []);
-    const selectedAccessory = watch('accessory', []);
+    // const {
+    //     register,
+    //     watch,
+    //     setValue,
+    //     formState: { errors },
+    // } = useForm();
+    // const selectedClothing = watch('clothing', []);
+    // const selectedAccessory = watch('accessory', []);
+
+    const reviewField = async (data, name) => {
+
+        const path = `videos/${userId}/${keyIdentifier}/labels`;
+        try {
+            await realtimeDb.ref(path).update({ [name]: data });
+            console.log("Labels updated successfully!");
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
     useEffect(() => {
         const getSingleFile = async () => {
@@ -34,64 +45,66 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
 
     }, [videoUrl])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const updateChecboxes = async () => {
-            const path = `videos/${userId}/${keyIdentifier}/labels`;
-            try {
-                await realtimeDb.ref(path).update({
-                    clothing: selectedClothing,
-                    accessories: selectedAccessory
-                });
-                console.log("Labels updated successfully!");
-            } catch (error) {
-                console.log(error.message);
-            }
-        }
+    //     const updateChecboxes = async () => {
+    //         const path = `videos/${userId}/${keyIdentifier}/labels`;
+    //         try {
+    //             await realtimeDb.ref(path).update({
+    //                 clothing: selectedClothing,
+    //                 accessories: selectedAccessory
+    //             });
+    //             console.log("Labels updated successfully!");
+    //         } catch (error) {
+    //             console.log(error.message);
+    //         }
+    //     }
 
-        if (selectedClothing.length > 0 || selectedAccessory.length > 0) {
-            updateChecboxes();
-        }
-    }, [selectedClothing, selectedAccessory]);
+    //     if (selectedClothing.length > 0 || selectedAccessory.length > 0) {
+    //         updateChecboxes();
+    //     }
+    // }, [selectedClothing, selectedAccessory]);
 
-    const handleFieldChange = (e) => {
-        console.log('run...')
-        const { name, value } = e.target;
-        console.log(name, value, 'handleFieldChange');
-        setValue(name, value);
-        review(value, name);
+    // const handleFieldChange = (e) => {
+    //     console.log('run...')
+    //     const { name, value } = e.target;
+    //     console.log(name, value, 'handleFieldChange');
+    //     setValue(name, value);
+    //     review(value, name);
+    // }
+
+    function handleSubmit(e) {
+
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+        console.log(formData, 'is the form data');
+        //reviewField();
     }
 
-    const review = async (data, name) => {
+    function handleChange(e) {
+        e.preventDefault();
+        const { name, value } = e.target;
+        console.log(name, value);
 
-        const path = `videos/${userId}/${keyIdentifier}/labels`;
-        try {
-            await realtimeDb.ref(path).update({ [name]: data });
-            console.log("Labels updated successfully!");
-        } catch (error) {
-            console.log(error.message);
-        }
     }
 
     return (<div id="videoPreview">
         <video controls width="500" src={url} />
         <div className="controls">
             {/* <button id="backButton" onClick={() => setIsClicked(value => !value)}>Go back</button> */}
-            <form autoComplete="off">
-                <select
-                    {...register("scenario", {
-                        required: true,
-                        message: "Select a relevant scenario"
-                    })}
+            <form autoComplete="off" method="post">
+                <label>Select scenario
+                    <select name="selectedScenarios" defaultValue="selectInitial" onChange={handleChange}>
+                        <option value="selectInitial">Select a scenario</option>
+                        {Object.values(Constants['scenarios'])
+                            .sort((a, b) => a.localeCompare(b))
+                            .map((scenarioItem) => <option key={scenarioItem} value={scenarioItem}>{scenarioItem}</option>)}
+                    </select>
+                </label>
 
-                    onChange={handleFieldChange}
-                >
-                    <option value="">Select scenario</option>
-                    {Object.values(Constants['scenarios'])
-                        .sort((a, b) => a.localeCompare(b))
-                        .map((scenarioItem) => <option key={scenarioItem}>{scenarioItem}</option>)}
-                </select>
-                <select
+                {/* <select
                     {...register("deviceHeight", {
                         required: true,
                         message: "Select a height"
@@ -160,7 +173,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                                 })} />
                             <label htmlFor={accessoryItem}>{accessoryItem}</label>
                         </div>)}
-                </fieldset>
+                </fieldset> */}
 
             </form>
         </div>
