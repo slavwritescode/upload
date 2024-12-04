@@ -64,7 +64,7 @@
     font-weight: bold;
 }
 
-#videoTaggingPage #videoContainer {
+#videoTaggingPage #videosList {
     text-align: left;
     /* width: 25em; */
     min-width: 200px;
@@ -74,15 +74,15 @@
     color: #1d3062;
 }
 
-#videoTaggingPage #videoContainer h3 {
+#videoTaggingPage #videosList h3 {
     margin: 1em 0;
 }
 
-#videoTaggingPage #videoContainer .allVideosList button {
+#videoTaggingPage #videosList .allVideosList button {
     margin: .5em 0;
 }
 
-#videoTaggingPage #videoContainer button {
+#videoTaggingPage #videosList button {
     padding: .1em 1em;
     background: rgba(75, 40, 109);
 
@@ -94,11 +94,11 @@
     cursor: pointer;
 }
 
-#videoTaggingPage #videoContainer li {
+#videoTaggingPage #videosList li {
     list-style: none;
 }
 
-#videoTaggingPage #videoContainer #videoInfoBlock {
+#videoTaggingPage #videosList #videoInfoBlock {
     margin: 2em;
 }
 

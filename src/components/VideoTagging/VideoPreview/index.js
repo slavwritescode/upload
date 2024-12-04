@@ -75,8 +75,6 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
 
     return (<div id="videoPreview">
         <video controls width="500" src={url} />
-        <p>{videoUrl}</p>
-        <p>{keyIdentifier}</p>
         <div className="controls">
             {/* <button id="backButton" onClick={() => setIsClicked(value => !value)}>Go back</button> */}
             <form autoComplete="off">

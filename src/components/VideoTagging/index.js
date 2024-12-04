@@ -8,8 +8,6 @@ import { uploadBytesResumable, ref } from "firebase/storage";
 import { updateUserInfo } from "../../Redux/Features/userInfo";
 
 import './index.css';
-import { set } from "date-fns";
-import { compileSchema } from "ajv/dist/compile";
 
 const VideoTagging = () => {
     const location = useLocation();
@@ -72,10 +70,6 @@ const VideoTagging = () => {
                 console.error("Upload failed:", error.message);
             },
             async () => {
-
-                // const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                // setDownloadURL(downloadURL);
-                // alert("File uploaded successfully!");
                 try {
                     await realtimeDb.ref(`/videos/${userId}/${videoId}`).set({ 'date': Date.now(), 'labels': {} });
                 } catch (error) {
@@ -109,8 +103,6 @@ const VideoTagging = () => {
     }, [userId]);
 
     useEffect(() => {
-
-
         const fetchUserId = async () => {
             try {
 
@@ -138,7 +130,7 @@ const VideoTagging = () => {
     return (
         <div id="videoTaggingPage">
             {/**have a list for all previous uploaded videos */}
-            <div id="videoContainer">
+            <div id="videosList">
                 <h3>Recently uploaded</h3>
                 {error
                     ? <p>An error occured when displaying the videos you have recently uploaded</p>
@@ -149,12 +141,9 @@ const VideoTagging = () => {
                                 return b[1].date - a[1].date
                             })
                             .map(singleVideo => {
-                                //console.log(singleVideo, 'is the single video...');
                                 const keyIdentifier = singleVideo[0];
                                 const data = singleVideo[1];
 
-                                //console.log("/videos/" + singleVideo[0] + '.mov', 'is the url');
-                                // console.log(keyIdentifier, 'is the unique key');
                                 return <li key={keyIdentifier}><button onClick={() => handleVideoClick(keyIdentifier, data)}>
                                     {formatDateTime(data.date)}
 
@@ -163,16 +152,13 @@ const VideoTagging = () => {
 
                     </ul>}
             </div>
-            {/* {console.log(JSON.stringify(selectedVideo), 'this is selected video')} */}
+
             {selectedVideo && (
                 <VideoPreview
                     videoUrl={"/videos/" + selectedVideo + '.mov'}
                     keyIdentifier={selectedVideo} />
             )}
 
-            <div id="taggingControls">
-                {/* <VideoPreview videoUrl={ } keyIdentifier={ } /> */}
-            </div>
             <div id="uploadForm">
 
                 <h2>Upload File</h2>
