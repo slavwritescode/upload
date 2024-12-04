@@ -34,7 +34,7 @@ const Navbar = ({ setUserId, showStats, setShowStats, showLog, setShowLog, showD
         <span id="projectName">| Tokoro</span>
         {/* {userRole === 'admin' ? <a href="/registration-form" onClick={(e) => { e.preventDefault(); navigate("/registration-form"); }}>Register new moderator</a> : ''} */}
         {name && userRole === 'moderator' ? <p id="userName">Welcome, {name}</p> : ''}
-        {userRole !== 'moderator' ? <a href="/login" onClick={(e) => { e.preventDefault(); navigate("/login"); }}>Login</a> : ''}
+        {userRole !== 'moderator' && !userId ? <a href="/login" onClick={(e) => { e.preventDefault(); navigate("/login"); }}>Login</a> : ''}
         {<a href="/registration-form" onClick={(e) => { e.preventDefault(); navigate("/registration-form"); }}>Register new moderator</a>}
         {userRole === 'moderator' ? <a href="/video-tagging" onClick={(e) => { e.preventDefault(); navigate("/video-tagging"); }}>Video Tagging</a> : ''}
 
