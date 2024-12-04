@@ -8,6 +8,11 @@
     background: #c4cfedb9;
 }
 
+#videoTaggingPage .container {
+    display: flex;
+    flex-direction: column;
+}
+
 #videoTaggingPage #uploadWarning {
     color: var(--warning-color);
     font-weight: bold;
@@ -58,6 +63,7 @@
 
 #videoTaggingPage h3 {
     margin: 1em;
+    text-align: center;
 }
 
 #videoTaggingPage span {

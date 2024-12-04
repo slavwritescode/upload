@@ -28,7 +28,6 @@ const VideoTagging = () => {
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
         if (file && file.type === 'video/quicktime') {
-            console.log('test')
             const url = URL.createObjectURL(file);
             setPreviewUrl(url);
         }
@@ -63,7 +62,7 @@ const VideoTagging = () => {
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 setProgress(progress);
-                // console.log(`Upload is ${progress}% done`);
+
             },
             (error) => {
                 // Handle upload errors
@@ -82,13 +81,13 @@ const VideoTagging = () => {
 
     // Handler for when a video item is clicked
     const handleVideoClick = (keyIdentifier, data) => {
-        console.log(keyIdentifier, data);
+
         setSelectedVideo(keyIdentifier);
     };
 
     useEffect(() => {
         const getAllVideos = async () => {
-            console.log('run');
+
             let videosRef = realtimeDb.ref(`/videos/${userId}`);
             try {
                 videosRef.on('value', data => {
@@ -105,11 +104,9 @@ const VideoTagging = () => {
     useEffect(() => {
         const fetchUserId = async () => {
             try {
-
                 const userSnapshot = await realtimeDb.ref(`/users/${uid}`).once('value');
                 const userData = userSnapshot.val();
                 let temp = {};
-                console.log(uid, userData, 'before the if');
                 temp['userId'] = userData.userId;
 
                 if (userData) {
@@ -141,7 +138,6 @@ const VideoTagging = () => {
                                 return b[1].date - a[1].date
                             })
                             .map(singleVideo => {
-                                console.log(singleVideo, 'is single video')
                                 const keyIdentifier = singleVideo[0];
                                 const data = singleVideo[1];
 
@@ -153,44 +149,45 @@ const VideoTagging = () => {
 
                     </ul>}
             </div>
-
-            {selectedVideo && (
-                <VideoPreview
-                    videoUrl={"/videos/" + selectedVideo + '.mov'}
-                    keyIdentifier={selectedVideo} />
-            )}
-
-            <div id="uploadForm">
-
-                <h2>Upload File</h2>
-
-                {previewUrl && (
-                    <div>
-                        <video
-                            width={'100%'}
-                            controls
-                            src={previewUrl}
-                            style={{ display: 'block', margin: '3em 0' }}
-                        >
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
+            <div className="container">
+                {selectedVideo && (
+                    <VideoPreview
+                        videoUrl={"/videos/" + selectedVideo + '.mov'}
+                        keyIdentifier={selectedVideo} />
                 )}
 
-                {progress > 0 && (
-                    <div className="progressBar">
-                        <p>Progress: {progress.toFixed(2)}%</p>
-                        <progress value={progress} max="100"></progress>
-                    </div>
-                )}
+                <div id="uploadForm">
 
-                <div className="uploadControls">
-                    <input type="file" onChange={handleFileChange} />
-                    <button onClick={handleUpload} disabled={!file}>
-                        Upload File
-                    </button>
+                    <h2>Upload File</h2>
+
+                    {previewUrl && (
+                        <div>
+                            <video
+                                width={'100%'}
+                                controls
+                                src={previewUrl}
+                                style={{ display: 'block', margin: '3em 0' }}
+                            >
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    )}
+
+                    {progress > 0 && (
+                        <div className="progressBar">
+                            <p>Progress: {progress.toFixed(2)}%</p>
+                            <progress value={progress} max="100"></progress>
+                        </div>
+                    )}
+
+                    <div className="uploadControls">
+                        <input type="file" onChange={handleFileChange} />
+                        <button onClick={handleUpload} disabled={!file}>
+                            Upload File
+                        </button>
+                    </div>
+
                 </div>
-
             </div>
         </div>
     )

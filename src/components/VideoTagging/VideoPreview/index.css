@@ -12,6 +12,7 @@
   border-radius: 8px;
   padding: 16px;
   margin: 20px 0; 
+  min-width: 750px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,10 +23,8 @@
     padding: 0 8px; 
 }
 
-#videoPreview .controls div {
-    margin-bottom: 12px; 
-    display: flex; 
-    align-items: center; 
+#videoPreview .controls label {
+  margin: .5em;
 }
 
 #videoPreview .controls input[type="checkbox"] {
@@ -102,5 +101,20 @@
 @media (max-width: 768px) {
   #videoPreview {
     justify-content: center;
+    
+  }
+
+  #videoPreview .controls fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 450px;
+
+  }
+
+  
+  #videoPreview .controls input[type="checkbox"] {
+    width: 48px;
+    height: 48px;
   }
 }
