@@ -1642,7 +1642,7 @@ const Constants = {
         9001,
         10001
     ],
-    scenarios: {
+    scenario: {
         0: "Undisguised",
         1: "Print Spoof",
         2: "Replay Spoof",

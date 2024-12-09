@@ -9,14 +9,20 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     const userInfo = useSelector((state) => state.userInfo.value) || {};
     const userId = userInfo['userId'];
     const [url, setUrl] = useState(null);
+    const [checkedClothingItems, setCheckedClothingItems] = useState({});
 
     const reviewField = async (data, name) => {
-        if (name.contains('initial')) {
-            return;
-        }
+        // console.log(data, 'is data');
+        // console.log(name, 'is name');
+        let obj = Constants[name];
+        let values = Object.values(obj);
+
+        let neededIndex = values.indexOf(data);
+
         const path = `videos/${userId}/${keyIdentifier}/labels`;
         try {
-            await realtimeDb.ref(path).update({ [name]: data });
+            await realtimeDb.ref(path).update({ [name]: neededIndex });
+            // await realtimeDb.ref(path).update({ [name]: data });
             console.log("Labels updated successfully!");
         } catch (error) {
             console.log(error.message);
@@ -40,9 +46,15 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     function handleChange(e) {
         e.preventDefault();
         const { name, value, checked } = e.target;
-        if (name === 'clothingBox') {
-            console.log('box');
-
+        console.log(name, 'name is');
+        if (name === 'clothing') {
+            setCheckedClothingItems({
+                ...checkedClothingItems,
+                [value]: checked
+            })
+            console.log(checkedClothingItems)
+            //console.log('value in checkbox case is', value);
+            reviewField(value, name);
         } else {
 
             reviewField(value, name);
@@ -56,7 +68,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
             <form autoComplete="off">
                 <select name="scenario" defaultValue="initialScenario" onChange={handleChange}>
                     <option value="selectInitial">Select a scenario</option>
-                    {Object.values(Constants['scenarios'])
+                    {Object.values(Constants['scenario'])
                         .sort((a, b) => a.localeCompare(b))
                         .map((scenarioItem) => <option key={scenarioItem} value={scenarioItem}>{scenarioItem}</option>)}
                 </select>
@@ -68,7 +80,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                         .map((deviceHeightItem) => <option key={deviceHeightItem} value={deviceHeightItem}>{deviceHeightItem}</option>)}
                 </select>
 
-                <select name="angle" defaultValue="initialAngle" onChange={handleChange}>
+                <select name="approachAngle" defaultValue="initialAngle" onChange={handleChange}>
                     <option value="initialAngle">Select angle</option>
                     {Object.values(Constants['approachAngle'])
                         .sort((a, b) => a.localeCompare(b))
@@ -85,17 +97,21 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                     <legend>Choose all clothing that applies</legend>
                     {Object.values(Constants['clothing'])
                         .sort((a, b) => a.localeCompare(b))
-                        .map(clothingItem => <label key={clothingItem} htmlFor={clothingItem}>
-                            <input
-                                type="checkbox"
-                                name="clothingBox"
-                                id={clothingItem}
-                                value={clothingItem}
-                                onChange={handleChange}
-                            />
-                            {clothingItem}
-                        </label>)}
+                        .map(clothingItem =>
+                            <div key={clothingItem}>
+                                <input
+                                    type="checkbox"
+                                    name="clothing"
+                                    checked={false}
+                                    id={clothingItem}
+                                    value={clothingItem}
+                                    onChange={handleChange}
+                                />
+                                <label key={clothingItem} htmlFor={clothingItem}>{clothingItem}</label>
+
+                            </div>)}
                 </fieldset>
+
                 {/* 
                 
                 <fieldset>
@@ -117,7 +133,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
 
             </form>
         </div>
-    </div>)
+    </div >)
 }
 
 export default VideoPreview

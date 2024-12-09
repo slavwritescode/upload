@@ -27,26 +27,25 @@
   margin: .5em;
 }
 
-#videoPreview .controls input[type="checkbox"] {
+/* #videoPreview .controls input[type="checkbox"] {
   appearance: none; 
   width: 18px;
   height: 18px;
-  margin-right: 8px; /* Space between checkbox and label */
-  border: 2px solid #fff; /* Border color for the checkbox */
-  border-radius: 4px; /* Slightly rounded corners */
+  margin-right: 8px; 
+  border: 2px solid #fff; 
+  border-radius: 4px; 
   outline: none;
   cursor: pointer;
   position: relative;
 }
 
 #videoPreview .controls input[type="checkbox"]:checked {
-  background-color: rgba(75, 40, 109);/* Fill color when checked */
+  background-color: rgba(75, 40, 109);
   border-color: rgba(75, 40, 109);
-}
-
-#videoPreview .controls input[type="checkbox"]:hover {
+}*/
+/* #videoPreview .controls input[type="checkbox"]:hover {
   border-color: #45a049; 
-}
+} */
 
 #videoPreview .controls select {
     border: 0px;
