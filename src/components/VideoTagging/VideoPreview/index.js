@@ -48,13 +48,13 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
         const { name, value, checked } = e.target;
         console.log(name, 'name is');
         if (name === 'clothing') {
-            setCheckedClothingItems({
-                ...checkedClothingItems,
+            setCheckedClothingItems((prevState) => ({
+                ...prevState,
                 [value]: checked
-            })
-            console.log(checkedClothingItems)
+            }))
+            console.log(checkedClothingItems, ' is the checkbox state')
             //console.log('value in checkbox case is', value);
-            reviewField(value, name);
+            reviewField(checkedClothingItems, name);
         } else {
 
             reviewField(value, name);
@@ -102,7 +102,7 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                                 <input
                                     type="checkbox"
                                     name="clothing"
-                                    checked={false}
+                                    checked={checkedClothingItems[clothingItem] || false}
                                     id={clothingItem}
                                     value={clothingItem}
                                     onChange={handleChange}
