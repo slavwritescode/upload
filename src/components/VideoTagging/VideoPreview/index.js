@@ -10,20 +10,25 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     const userId = userInfo['userId'];
     const [url, setUrl] = useState(null);
     const [checkedClothingItems, setCheckedClothingItems] = useState({});
+    const [items, setItems] = useState({});
 
-    const reviewField = async (data, name) => {
-        // console.log(data, 'is data');
-        // console.log(name, 'is name');
+    const reviewField = async (dataOfAllInputs, name) => {
+
         let obj = Constants[name];
+        console.log(obj, 'object of all values and indexes')
         let values = Object.values(obj);
-
-        let neededIndex = values.indexOf(data);
-
+        //get just the values
+        //console.log('currently values is', values);//in the case of the checkboxes this is an object with props
+        //console.log(data, 'is data')
+        //in case of an object it might be a good idea to have another value and save that
+        console.log(dataOfAllInputs, 'this is the data we will be working with')
+        let neededIndex = values.indexOf(dataOfAllInputs);
+        // let objIndexes = values.map(individialValue=> )
         const path = `videos/${userId}/${keyIdentifier}/labels`;
         try {
             await realtimeDb.ref(path).update({ [name]: neededIndex });
             // await realtimeDb.ref(path).update({ [name]: data });
-            console.log("Labels updated successfully!");
+
         } catch (error) {
             console.log(error.message);
         }
@@ -44,20 +49,43 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
     }, [videoUrl])
 
     function handleChange(e) {
-        e.preventDefault();
-        const { name, value, checked } = e.target;
-        console.log(name, 'name is');
-        if (name === 'clothing') {
-            setCheckedClothingItems((prevState) => ({
-                ...prevState,
-                [value]: checked
-            }))
-            console.log(checkedClothingItems, ' is the checkbox state')
-            //console.log('value in checkbox case is', value);
-            reviewField(checkedClothingItems, name);
-        } else {
 
-            reviewField(value, name);
+        // const { name, value, type, checked } = e.target;
+
+        // if (true) {
+
+        //     // console.log(value, 'this is the value');
+        //     // setItems((prevState) => ({
+        //     //     ...prevState,
+        //     //     [value]: checked
+        //     // }));
+
+        //     // setCheckedClothingItems((prevState) => ({
+        //     //     ...prevState,
+        //     //     [value]: checked
+        //     // }));
+        //     console.log(value, 'is the value');
+        //     setItems((prevState) => ({
+        //         ...prevState,
+        //         [name]: [checked ? checked : value]
+        //     }));
+        //     //since it is async we are not getting the correct values here. Something needs to be moved.
+
+        //     //reviewField(checkedClothingItems, name);
+        // } else {
+
+        //     //reviewField(value, name);
+        // }
+        // console.log('data before function', items)
+        // reviewField(items, name);
+        // console.log(items);
+        const { id, type, checked } = e.target;
+
+        if (type === 'checkbox') {
+            setItems(prevState => ({
+                ...prevState,
+                [id]: checked
+            }));
         }
 
     }
@@ -102,9 +130,8 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
                                 <input
                                     type="checkbox"
                                     name="clothing"
-                                    checked={checkedClothingItems[clothingItem] || false}
+                                    checked={items[clothingItem] || false}
                                     id={clothingItem}
-                                    value={clothingItem}
                                     onChange={handleChange}
                                 />
                                 <label key={clothingItem} htmlFor={clothingItem}>{clothingItem}</label>
