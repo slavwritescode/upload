@@ -153,7 +153,7 @@ const VideoTagging = () => {
                 {selectedVideo && (
                     <VideoPreview
                         videoUrl={"/videos/" + selectedVideo + '.mov'}
-                        keyIdentifier={selectedVideo} />
+                        videoId={selectedVideo} />
                 )}
 
                 <div id="uploadForm">

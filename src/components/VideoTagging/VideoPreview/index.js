@@ -5,34 +5,12 @@ import { realtimeDb } from '../../../firebase/config';
 import { useSelector } from 'react-redux';
 import './index.css';
 
-const VideoPreview = ({ videoUrl, keyIdentifier }) => {
+const VideoPreview = ({ videoUrl, videoId }) => {
     const userInfo = useSelector((state) => state.userInfo.value) || {};
     const userId = userInfo['userId'];
+
     const [url, setUrl] = useState(null);
-    const [checkedClothingItems, setCheckedClothingItems] = useState({});
-    const [items, setItems] = useState({});
-
-    const reviewField = async (dataOfAllInputs, name) => {
-
-        let obj = Constants[name];
-        console.log(obj, 'object of all values and indexes')
-        let values = Object.values(obj);
-        //get just the values
-        //console.log('currently values is', values);//in the case of the checkboxes this is an object with props
-        //console.log(data, 'is data')
-        //in case of an object it might be a good idea to have another value and save that
-        console.log(dataOfAllInputs, 'this is the data we will be working with')
-        let neededIndex = values.indexOf(dataOfAllInputs);
-        // let objIndexes = values.map(individialValue=> )
-        const path = `videos/${userId}/${keyIdentifier}/labels`;
-        try {
-            await realtimeDb.ref(path).update({ [name]: neededIndex });
-            // await realtimeDb.ref(path).update({ [name]: data });
-
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
+    const [labels, setLabels] = useState({});
 
     useEffect(() => {
         const getSingleFile = async () => {
@@ -48,99 +26,100 @@ const VideoPreview = ({ videoUrl, keyIdentifier }) => {
 
     }, [videoUrl])
 
+    useEffect(() => {
+        const listener = realtimeDb.ref('videos/' + userId + '/' + videoId + '/labels').on('value', (snapshot) => setLabels(snapshot.val() || {}));
+        return () => realtimeDb.ref('videos/' + userId + '/' + videoId + '/labels').off('value', listener);
+    }, [videoId])
+
     function handleChange(e) {
 
-        // const { name, value, type, checked } = e.target;
+        const { name, value, type } = e.target;
 
-        // if (true) {
+        if (type === 'select-one') {
+            const currentValue = labels[name] === undefined ? null : labels[name];
+            const newValue = value === '--select--' ? null : parseInt(value);
 
-        //     // console.log(value, 'this is the value');
-        //     // setItems((prevState) => ({
-        //     //     ...prevState,
-        //     //     [value]: checked
-        //     // }));
+            if (currentValue !== newValue) {
+                realtimeDb.ref('videos/' + userId + '/' + videoId + '/labels/' + name).set(newValue);
+            }
+        } else if (type === 'checkbox') {
+            let currentValues = labels[name] === undefined ? [] : labels[name];
+            const valueToUpdate = parseInt(value);
 
-        //     // setCheckedClothingItems((prevState) => ({
-        //     //     ...prevState,
-        //     //     [value]: checked
-        //     // }));
-        //     console.log(value, 'is the value');
-        //     setItems((prevState) => ({
-        //         ...prevState,
-        //         [name]: [checked ? checked : value]
-        //     }));
-        //     //since it is async we are not getting the correct values here. Something needs to be moved.
+            if (currentValues.includes(valueToUpdate)) {
+                const index = currentValues.indexOf(valueToUpdate);
+                currentValues.splice(index, 1);
+            } else {
+                currentValues.push(valueToUpdate);
+            }
 
-        //     //reviewField(checkedClothingItems, name);
-        // } else {
+            if (currentValues.length === 0) {
+                realtimeDb.ref('videos/' + userId + '/' + videoId + '/labels/' + name).remove();
+            } else {
+                realtimeDb.ref('videos/' + userId + '/' + videoId + '/labels/' + name).set(currentValues);
+            }
+        } else if (type === 'radio') {
+            const currentValue = labels[name] === undefined ? null : labels[name];
+            const newValue = parseInt(value);
 
-        //     //reviewField(value, name);
-        // }
-        // console.log('data before function', items)
-        // reviewField(items, name);
-        // console.log(items);
-        const { id, type, checked } = e.target;
-
-        if (type === 'checkbox') {
-            setItems(prevState => ({
-                ...prevState,
-                [id]: checked
-            }));
+            if (currentValue !== newValue) {
+                realtimeDb.ref('videos/' + userId + '/' + videoId + '/labels/' + name).set(newValue);
+            }
         }
-
     }
 
     return (<div id="videoPreview">
         <video controls width="500" src={url} />
         <div className="controls">
             <form autoComplete="off">
-                <select name="scenario" defaultValue="initialScenario" onChange={handleChange}>
-                    <option value="selectInitial">Select a scenario</option>
-                    {Object.values(Constants['scenario'])
-                        .sort((a, b) => a.localeCompare(b))
-                        .map((scenarioItem) => <option key={scenarioItem} value={scenarioItem}>{scenarioItem}</option>)}
+                <select name="scenario" onChange={handleChange} value={labels['scenario'] === undefined ? '--select--' : labels['scenario']}>
+                    <option value="--select--">Select a scenario</option>
+                    {Object.keys(Constants['scenario'])
+                        .sort((a, b) => Constants['scenario'][a].localeCompare(Constants['scenario'][b]))
+                        .map((key) => <option key={'scenario-' + key} value={key}>{Constants['scenario'][key]}</option>)}
                 </select>
 
-                <select name="deviceHeight" defaultValue="initialHeight" onChange={handleChange}>
-                    <option value="initialHeight">Select a height</option>
-                    {Object.values(Constants['deviceHeight'])
-                        .sort((a, b) => a.localeCompare(b))
-                        .map((deviceHeightItem) => <option key={deviceHeightItem} value={deviceHeightItem}>{deviceHeightItem}</option>)}
+                <select name="deviceHeight" onChange={handleChange} value={labels['deviceHeight'] === undefined ? '--select--' : labels['deviceHeight']}>
+                    <option value="--select--">Select a height</option>
+                    {Object.keys(Constants['deviceHeight'])
+                        .sort((a, b) => Constants['deviceHeight'][a].localeCompare(Constants['deviceHeight'][b]))
+                        .map((key) => <option key={'deviceHeight-' + key} value={key}>{Constants['deviceHeight'][key]}</option>)}
                 </select>
 
-                <select name="approachAngle" defaultValue="initialAngle" onChange={handleChange}>
-                    <option value="initialAngle">Select angle</option>
-                    {Object.values(Constants['approachAngle'])
-                        .sort((a, b) => a.localeCompare(b))
-                        .map((angleItem) => <option key={angleItem} value={angleItem}>{angleItem}</option>)}
+                <select name="approachAngle" onChange={handleChange} value={labels['approachAngle'] === undefined ? '--select--' : labels['approachAngle']}>
+                    <option value="--select--">Select angle</option>
+                    {Object.keys(Constants['approachAngle'])
+                        .sort((a, b) => Constants['approachAngle'][a].localeCompare(Constants['approachAngle'][b]))
+                        .map((key) => <option key={'approachAngle-' + key} value={key}>{Constants['approachAngle'][key]}</option>)}
                 </select>
 
-                <select name="lighting" defaultValue="initialLighting" onChange={handleChange}>
-                    <option value="initialLighting">Select lighting</option>
-                    {Object.values(Constants['lighting'])
-                        .sort((a, b) => a.localeCompare(b))
-                        .map((lightingItem) => <option key={lightingItem} value={lightingItem}>{lightingItem}</option>)}
+                <select name="lighting" onChange={handleChange} value={labels['lighting'] === undefined ? '--select--' : labels['lighting']}>
+                    <option value="--select--">Select lighting</option>
+                    {Object.keys(Constants['lighting'])
+                        .sort((a, b) => Constants['lighting'][a].localeCompare(Constants['lighting'][b]))
+                        .map((key) => <option key={'lighting-' + key} value={key}>{Constants['lighting'][key]}</option>)}
                 </select>
                 <fieldset>
                     <legend>Choose all clothing that applies</legend>
-                    {Object.values(Constants['clothing'])
-                        .sort((a, b) => a.localeCompare(b))
-                        .map(clothingItem =>
-                            <div key={clothingItem}>
+                    {Object.keys(Constants['clothing'])
+                        .sort((a, b) => Constants['clothing'][a].localeCompare(Constants['clothing'][b]))
+                        .map(key =>
+                            <div key={'clothing-' + key}>
                                 <input
                                     type="checkbox"
                                     name="clothing"
-                                    checked={items[clothingItem] || false}
-                                    id={clothingItem}
+                                    checked={(labels['clothing'] || []).includes(parseInt(key))}
+                                    // checked={labels['clothing'] === parseInt(key)} // in case of radio
+                                    value={key}
+                                    id={'clothing-' + key}
                                     onChange={handleChange}
                                 />
-                                <label key={clothingItem} htmlFor={clothingItem}>{clothingItem}</label>
-
+                                <label htmlFor={'clothing-' + key}>{Constants['clothing'][key]}</label>
                             </div>)}
                 </fieldset>
 
-                {/* 
-                
+                {/*
+
                 <fieldset>
                     <legend>Choose all accessories that apply</legend>
                     {Object.values(Constants['accessories'])
