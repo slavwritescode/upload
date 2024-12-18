@@ -4,6 +4,7 @@ import Constants from '../../Constants';
 import { realtimeDb } from '../../../firebase/config';
 import { useSelector } from 'react-redux';
 import './index.css';
+import Label from '../Label';
 
 const VideoPreview = ({ videoUrl, videoId }) => {
     const userInfo = useSelector((state) => state.userInfo.value) || {};
@@ -34,7 +35,7 @@ const VideoPreview = ({ videoUrl, videoId }) => {
     function handleChange(e) {
 
         const { name, value, type } = e.target;
-
+        console.log('current type is', type, name, value);
         if (type === 'select-one') {
             const currentValue = labels[name] === undefined ? null : labels[name];
             const newValue = value === '--select--' ? null : parseInt(value);
@@ -93,12 +94,18 @@ const VideoPreview = ({ videoUrl, videoId }) => {
                         .map((key) => <option key={'approachAngle-' + key} value={key}>{Constants['approachAngle'][key]}</option>)}
                 </select>
 
-                <select name="lighting" onChange={handleChange} value={labels['lighting'] === undefined ? '--select--' : labels['lighting']}>
+
+                {/* <select name="lighting" onChange={handleChange} value={labels['lighting'] === undefined ? '--select--' : labels['lighting']}>
                     <option value="--select--">Select lighting</option>
                     {Object.keys(Constants['lighting'])
                         .sort((a, b) => Constants['lighting'][a].localeCompare(Constants['lighting'][b]))
                         .map((key) => <option key={'lighting-' + key} value={key}>{Constants['lighting'][key]}</option>)}
-                </select>
+                </select> */}
+                <Label
+                    multifieldData={Object.keys(Constants['lighting'])}
+                    type={"button"}
+                    onClick={handleChange}
+                    name={"lighting"} />
                 <fieldset>
                     <legend>Choose all clothing that applies</legend>
                     {Object.keys(Constants['clothing'])
