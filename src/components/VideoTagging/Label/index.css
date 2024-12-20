@@ -1,0 +1,14 @@
+.button {
+    cursor: pointer;
+}
+
+.button .red{
+    background-color: red;
+}
+
+.button .green {
+    background-color: green;
+}
+
+
+

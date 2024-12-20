@@ -33,7 +33,7 @@ const VideoPreview = ({ videoUrl, videoId }) => {
     }, [videoId])
 
     function handleChange(e) {
-
+        console.log('handle change')
         const { name, value, type } = e.target;
         console.log('current type is', type, name, value);
         if (type === 'select-one') {
@@ -66,6 +66,10 @@ const VideoPreview = ({ videoUrl, videoId }) => {
             if (currentValue !== newValue) {
                 realtimeDb.ref('videos/' + userId + '/' + videoId + '/labels/' + name).set(newValue);
             }
+        } else if (type === 'button') {
+            const currentValue = labels[name] === undefined ? null : labels[name];
+            console.log(labels);
+            console.log(currentValue);
         }
     }
 
@@ -102,10 +106,10 @@ const VideoPreview = ({ videoUrl, videoId }) => {
                         .map((key) => <option key={'lighting-' + key} value={key}>{Constants['lighting'][key]}</option>)}
                 </select> */}
                 <Label
-                    multifieldData={Object.keys(Constants['lighting'])}
+                    multifieldData={Object.keys(Constants["lighting"])}
                     type={"button"}
-                    onClick={handleChange}
-                    name={"lighting"} />
+                    name={"lighting"}
+                    onClick={handleChange} />
                 <fieldset>
                     <legend>Choose all clothing that applies</legend>
                     {Object.keys(Constants['clothing'])

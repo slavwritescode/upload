@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
-
-const Label = ({ multifieldData, type, onClick }) => {
+import Constants from '../../Constants';
+import './index.css';
+const Label = ({ multifieldData, type, onClick, name }) => {
     console.log(multifieldData, 'is multiFieldData');
     return multifieldData
         .sort((a, b) => multifieldData[a].localeCompare(multifieldData[b]))
         .map(item => {
             if (type === 'button') {
-                return <button
+                return <input
+                    type={"button"}
+                    className={`button ${(multifieldData || []).includes(parseInt(item)) ? 'red' : 'green'}`}
                     key={item}
-                    onClick={onClick}>{item}</button>
+                    onClick={onClick}
+                    name={name}
+                    value={Constants['lighting'][item]} />
             }
             return <input
                 key={item + '-key'}

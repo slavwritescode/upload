@@ -1,0 +1,33 @@
+#videoTaggingPage #videosList {
+    text-align: left;
+    /* width: 25em; */
+    min-width: 200px;
+    background: transparent;
+    padding: 2em;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    color: #1d3062;
+}
+
+#videoTaggingPage #videosList h3 {
+    margin: 1em 0;
+}
+
+#videoTaggingPage #videosList .allVideosList button {
+    margin: .5em 0;
+}
+
+#videoTaggingPage #videosList button {
+    padding: .1em 1em;
+    background: rgba(75, 40, 109);
+
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+    outline: none;
+    cursor: pointer;
+}
+
+#videoTaggingPage #videosList li {
+    list-style: none;
+}
