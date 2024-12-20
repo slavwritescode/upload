@@ -38,11 +38,12 @@ const SideBar = ({ error, allUploadedVideos, handleVideoClick }) => {
             {error || filteredVideos == null
                 ? <p>An error occured when displaying the videos you have recently uploaded</p>
                 : <ul className="allVideosList">
-                    {filteredVideos ? Object.entries(filteredVideos)
+                    {filteredVideos ? filteredVideos
                         .sort((a, b) => b[1].date - a[1].date)
                         .map(singleVideo => {
                             const keyIdentifier = singleVideo[0];
                             const data = singleVideo[1];
+                            console.log(data, 'is data');
 
                             return <li key={keyIdentifier}><button onClick={() => handleVideoClick(keyIdentifier, data)}>
                                 {formatDateTimeToHumanReadableString(data.date)}
