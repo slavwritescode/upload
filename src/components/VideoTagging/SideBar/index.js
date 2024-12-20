@@ -14,11 +14,28 @@ const SideBar = ({ error, allUploadedVideos, handleVideoClick }) => {
         return <div>Loading videos list...</div>
     }
 
+
+    for (const [key, value] of Object.entries(allUploadedVideos)) {
+        console.log(`${key}: ${value}`);
+        console.log(JSON.stringify(value));
+    }
+
     const filteredVideos = Object.entries(allUploadedVideos).filter(video => {
+
+        const dateOfTheVideo = video[1]['date'];
+        const now = Date.now();
+        const todayStart = new Date().setHours(0, 0, 0, 0);
+
         if (filterByThisDate === 'today') {
-            return video.date === Date.now();
+
+            return dateOfTheVideo >= todayStart && dateOfTheVideo < now;
+        } else if (filterByThisDate === 'last three days') {
+
+            const threeDaysAgo = now - 3 * 24 * 60 * 60 * 1000;
+            return dateOfTheVideo >= threeDaysAgo && dateOfTheVideo < now;
+
         } else {
-            return video;
+            return true;
         }
     })
 

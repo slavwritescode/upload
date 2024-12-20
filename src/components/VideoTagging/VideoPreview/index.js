@@ -98,18 +98,13 @@ const VideoPreview = ({ videoUrl, videoId }) => {
                         .map((key) => <option key={'approachAngle-' + key} value={key}>{Constants['approachAngle'][key]}</option>)}
                 </select>
 
-
-                {/* <select name="lighting" onChange={handleChange} value={labels['lighting'] === undefined ? '--select--' : labels['lighting']}>
-                    <option value="--select--">Select lighting</option>
-                    {Object.keys(Constants['lighting'])
-                        .sort((a, b) => Constants['lighting'][a].localeCompare(Constants['lighting'][b]))
-                        .map((key) => <option key={'lighting-' + key} value={key}>{Constants['lighting'][key]}</option>)}
-                </select> */}
                 <Label
                     multifieldData={Object.keys(Constants["lighting"])}
                     type={"button"}
                     name={"lighting"}
-                    onClick={handleChange} />
+                    onClick={handleChange}
+                />
+
                 <fieldset>
                     <legend>Choose all clothing that applies</legend>
                     {Object.keys(Constants['clothing'])
