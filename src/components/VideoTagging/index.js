@@ -3,7 +3,6 @@ import { realtimeDb, storage } from "../../firebase/config";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import VideoPreview from "./VideoPreview";
-import { formatDateTime } from "../../shared";
 import { uploadBytesResumable, ref } from "firebase/storage";
 import { updateUserInfo } from "../../Redux/Features/userInfo";
 

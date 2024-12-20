@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-function formatDateTime(input) {
+function formatDateTimeToHumanReadableString(input) {
 
     const timestamp = parseInt(input, 10);
     const date = new Date(timestamp);
@@ -9,4 +9,4 @@ function formatDateTime(input) {
 }
 
 
-export { formatDateTime };
+export { formatDateTimeToHumanReadableString };

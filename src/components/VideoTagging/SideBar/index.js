@@ -1,22 +1,51 @@
-import React from 'react'
-import { formatDateTime } from '../../../shared'
+import { useState } from 'react'
+import { formatDateTimeToHumanReadableString } from '../../../shared'
 import './index.css';
 
 const SideBar = ({ error, allUploadedVideos, handleVideoClick }) => {
+    //you have to filter based on the dropdown
+    const [filterByThisDate, setFilterByThisDate] = useState('');
+
+    const handleDateChange = (e) => {
+        setFilterByThisDate(e.target.value);
+    }
+
+    if (!allUploadedVideos) {
+        return <div>Loading videos list...</div>
+    }
+
+    const filteredVideos = Object.entries(allUploadedVideos).filter(video => {
+        if (filterByThisDate === 'today') {
+            return video.date === Date.now();
+        } else {
+            return video;
+        }
+    })
+
+
     return (
         <div id="videosList">
-            <h3>Recently uploaded</h3>
-            {error || allUploadedVideos == null
+            <div className="uploadedWhen">Uploaded
+                <div>
+                    <select
+                        value={filterByThisDate}
+                        onChange={handleDateChange}>
+                        <option value="today">Today</option>
+                        <option value="last three days">In the last three days</option>
+                    </select>
+                </div>
+            </div>
+            {error || filteredVideos == null
                 ? <p>An error occured when displaying the videos you have recently uploaded</p>
                 : <ul className="allVideosList">
-                    {allUploadedVideos ? Object.entries(allUploadedVideos)
+                    {filteredVideos ? Object.entries(filteredVideos)
                         .sort((a, b) => b[1].date - a[1].date)
                         .map(singleVideo => {
                             const keyIdentifier = singleVideo[0];
                             const data = singleVideo[1];
 
                             return <li key={keyIdentifier}><button onClick={() => handleVideoClick(keyIdentifier, data)}>
-                                {formatDateTime(data.date)}
+                                {formatDateTimeToHumanReadableString(data.date)}
 
                             </button></li>
                         }) : <p id="uploadWarning">Nothing uploaded recently.</p>}

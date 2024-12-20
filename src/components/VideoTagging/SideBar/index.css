@@ -8,6 +8,13 @@
     color: #1d3062;
 }
 
+#videoTaggingPage #videosList .uploadedWhen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
 #videoTaggingPage #videosList h3 {
     margin: 1em 0;
 }
