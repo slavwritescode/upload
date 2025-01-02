@@ -148,10 +148,8 @@ const VideoTagging = () => {
                     {previewUrl && (
                         <div>
                             <video
-                                width={'100%'}
                                 controls
                                 src={previewUrl}
-                                style={{ display: 'block', margin: '3em 0' }}
                             >
                                 Your browser does not support the video tag.
                             </video>

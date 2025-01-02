@@ -15,6 +15,19 @@
     gap: 1em;
 }
 
+#videoTaggingPage #videosList .uploadedWhen select {
+    padding: .2em;
+    outline: none;
+    font-weight: bold;
+    border-color: rgba(0, 0, 0, 0.2);
+    min-width: 20em;
+    border-radius: .2em;
+}
+
+#videoTaggingPage #videosList .uploadedWhen select option {
+    
+}
+
 #videoTaggingPage #videosList h3 {
     margin: 1em 0;
 }
@@ -26,7 +39,8 @@
 #videoTaggingPage #videosList button {
     padding: .1em 1em;
     background: rgba(75, 40, 109);
-
+    min-width: 70%;
+    max-width: 90%;
     color: #fff;
     font-size: 1em;
     font-weight: bold;

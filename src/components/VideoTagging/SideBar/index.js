@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { formatDateTimeToHumanReadableString } from '../../../shared'
 import './index.css';
 
 const SideBar = ({ error, allUploadedVideos, handleVideoClick }) => {
     //you have to filter based on the dropdown
-    const [filterByThisDate, setFilterByThisDate] = useState('');
+    const [filterByThisDate, setFilterByThisDate] = useState('today');
+
+    useEffect(() => {
+        console.log('in sidebar effect');
+        console.log(filterByThisDate);
+    }, [filterByThisDate])
+
 
     const handleDateChange = (e) => {
         setFilterByThisDate(e.target.value);
@@ -15,10 +21,10 @@ const SideBar = ({ error, allUploadedVideos, handleVideoClick }) => {
     }
 
 
-    for (const [key, value] of Object.entries(allUploadedVideos)) {
-        console.log(`${key}: ${value}`);
-        console.log(JSON.stringify(value));
-    }
+    // for (const [key, value] of Object.entries(allUploadedVideos)) {
+    //     console.log(`${key}: ${value}`);
+    //     console.log(JSON.stringify(value));
+    // }
 
     const filteredVideos = Object.entries(allUploadedVideos).filter(video => {
 
@@ -35,7 +41,7 @@ const SideBar = ({ error, allUploadedVideos, handleVideoClick }) => {
             return dateOfTheVideo >= threeDaysAgo && dateOfTheVideo < now;
 
         } else {
-            return true;
+            return video;
         }
     })
 
@@ -49,6 +55,7 @@ const SideBar = ({ error, allUploadedVideos, handleVideoClick }) => {
                         onChange={handleDateChange}>
                         <option value="today">Today</option>
                         <option value="last three days">In the last three days</option>
+                        <option value="all">All Uploads</option>
                     </select>
                 </div>
             </div>

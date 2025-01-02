@@ -61,6 +61,12 @@
     color: rgba(169, 169, 169, 1);
 }
 
+#videoTaggingPage #uploadForm video {
+    display: 'block';
+    margin: '3em 0';
+    width: 100%;
+}
+
 #videoTaggingPage h3 {
     margin: 1em;
     text-align: center;
